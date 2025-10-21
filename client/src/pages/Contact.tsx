@@ -1,254 +1,265 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { CONTACT_PHONE, CONTACT_EMAIL, SERVICES } from "@/const";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     phone: "",
-    service: "",
+    subject: "",
     message: "",
   });
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("شكراً لتواصلك معنا! سنرد عليك قريباً");
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      service: "",
-      message: "",
-    });
+    setSubmitted(true);
+    setTimeout(() => {
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      setSubmitted(false);
+    }, 3000);
   };
 
+  const contactInfo = [
+    {
+      icon: <Phone className="w-8 h-8" />,
+      title: "الهاتف",
+      details: "+966560655587",
+      link: "tel:+966560655587",
+    },
+    {
+      icon: <Mail className="w-8 h-8" />,
+      title: "البريد الإلكتروني",
+      details: "info@duralnafis.com",
+      link: "mailto:info@duralnafis.com",
+    },
+    {
+      icon: <MapPin className="w-8 h-8" />,
+      title: "العنوان",
+      details: "الرياض، المملكة العربية السعودية",
+      link: "#",
+    },
+    {
+      icon: <Clock className="w-8 h-8" />,
+      title: "ساعات العمل",
+      details: "السبت - الخميس: 9:00 - 17:00",
+      link: "#",
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "كم تستغرق مدة المشروع؟",
+      answer: "تختلف مدة المشروع حسب حجمه وتعقيده، لكننا نضمن التسليم في الوقت المحدد.",
+    },
+    {
+      question: "هل تقدمون استشارات مجانية؟",
+      answer: "نعم، نقدم استشارة مجانية أولية لفهم احتياجاتك بشكل أفضل.",
+    },
+    {
+      question: "ما هي طرق الدفع المتاحة؟",
+      answer: "نقبل التحويل البنكي والدفع الإلكتروني والشيكات.",
+    },
+    {
+      question: "هل تقدمون دعماً بعد المشروع؟",
+      answer: "نعم، نقدم دعماً شاملاً وصيانة دورية بعد انتهاء المشروع.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-background overflow-hidden">
       <Header />
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-16">
-          <div className="container">
-            <h1 className="text-4xl md:text-5xl font-bold">تواصل معنا</h1>
-            <p className="text-xl text-gray-300 mt-4">
-              نحن هنا للإجابة على أسئلتك والمساعدة في مشاريعك
+        <section className="relative overflow-hidden pt-20 pb-16 sm:pt-40 sm:pb-24">
+          <div className="absolute inset-0">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+          </div>
+          <div className="container relative z-10">
+            <h1 className="heading-modern text-gradient mb-4">تواصل معنا</h1>
+            <div className="divider-accent w-20 h-1 mb-6" />
+            <p className="text-2xl text-foreground/70 max-w-2xl font-medium">
+              نحن هنا للإجابة على جميع استفساراتك والمساعدة في تحقيق مشروعك
             </p>
           </div>
         </section>
 
-        {/* Contact Info */}
-        <section className="py-20">
+        {/* Contact Info Cards */}
+        <section className="section-modern bg-gradient-to-b from-primary/5 to-transparent">
           <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              <div className="bg-gray-50 p-8 rounded-lg text-center">
-                <Phone className="w-12 h-12 text-gray-900 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">الهاتف</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {contactInfo.map((info, index) => (
                 <a
-                  href={`tel:${CONTACT_PHONE}`}
-                  className="text-gray-600 hover:text-gray-900 transition"
+                  key={index}
+                  href={info.link}
+                  className="card-modern p-8 text-center group hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 hover-lift cursor-pointer"
+                  style={{
+                    animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
+                  }}
                 >
-                  {CONTACT_PHONE}
+                  <div className="flex justify-center mb-4 text-primary group-hover:scale-125 transition-transform duration-300">
+                    {info.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-primary mb-2">{info.title}</h3>
+                  <p className="text-foreground/70 font-medium hover:text-primary transition-colors">
+                    {info.details}
+                  </p>
                 </a>
-              </div>
-
-              <div className="bg-gray-50 p-8 rounded-lg text-center">
-                <Mail className="w-12 h-12 text-gray-900 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">البريد الإلكتروني</h3>
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="text-gray-600 hover:text-gray-900 transition"
-                >
-                  {CONTACT_EMAIL}
-                </a>
-              </div>
-
-              <div className="bg-gray-50 p-8 rounded-lg text-center">
-                <MapPin className="w-12 h-12 text-gray-900 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">الموقع</h3>
-                <p className="text-gray-600">المملكة العربية السعودية</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Form */}
-        <section className="py-20 bg-gray-50">
-          <div className="container">
-            <div className="max-w-2xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                اترك بياناتك وسنتواصل معك
-              </h2>
-
-              <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg border border-gray-200">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <label className="block text-gray-900 font-semibold mb-2">
-                      الاسم الأول *
-                    </label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gray-900"
-                      placeholder="أدخل اسمك الأول"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-900 font-semibold mb-2">
-                      الاسم الأخير *
-                    </label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gray-900"
-                      placeholder="أدخل اسمك الأخير"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <label className="block text-gray-900 font-semibold mb-2">
-                      البريد الإلكتروني *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gray-900"
-                      placeholder="بريدك الإلكتروني"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-900 font-semibold mb-2">
-                      رقم الهاتف *
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gray-900"
-                      placeholder="رقم هاتفك"
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-6">
-                  <label className="block text-gray-900 font-semibold mb-2">
-                    اختر الخدمة *
-                  </label>
-                  <select
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gray-900"
-                  >
-                    <option value="">اختر الخدمة</option>
-                    {SERVICES.map((service) => (
-                      <option key={service.id} value={service.title}>
-                        {service.title}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="mb-6">
-                  <label className="block text-gray-900 font-semibold mb-2">
-                    الرسالة
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={5}
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-gray-900"
-                    placeholder="أخبرنا عن مشروعك..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-gray-900 text-white py-3 rounded font-bold hover:bg-gray-800 transition"
-                >
-                  إرسال
-                </button>
-              </form>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="py-20">
-          <div className="container">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-              الأسئلة الشائعة
-            </h2>
-            <div className="max-w-2xl mx-auto space-y-6">
-              {[
-                {
-                  q: "كم يستغرق تقديم عرض السعر؟",
-                  a: "عادة ما نقدم عرض السعر خلال 2-3 أيام عمل من استقبال تفاصيل المشروع",
-                },
-                {
-                  q: "هل تقدمون استشارات مجانية؟",
-                  a: "نعم، نقدم استشارة مجانية أولية لفهم احتياجاتك ومتطلبات مشروعك",
-                },
-                {
-                  q: "ما هي طرق الدفع المتاحة؟",
-                  a: "نقبل التحويل البنكي والدفع الإلكتروني والشيكات",
-                },
-                {
-                  q: "هل تقدمون ضمانات على الخدمات؟",
-                  a: "نعم، نقدم ضمانات على جودة الخدمات والالتزام بالمواصفات المتفق عليها",
-                },
-              ].map((item, index) => (
-                <div key={index} className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.q}</h3>
-                  <p className="text-gray-600">{item.a}</p>
-                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gray-900 text-white text-center">
+        {/* Contact Form Section */}
+        <section className="section-modern">
           <div className="container">
-            <h2 className="text-4xl font-bold mb-6">
-              جاهز للبدء؟
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Form */}
+              <div className="space-y-8">
+                <div>
+                  <h2 className="heading-modern text-primary mb-4">أرسل لنا رسالة</h2>
+                  <div className="divider-accent w-20 h-1 mb-6" />
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="block text-foreground font-bold">الاسم</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-6 py-3 rounded-xl border-2 border-border focus:border-primary focus:outline-none transition-colors bg-background"
+                      placeholder="أدخل اسمك"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="block text-foreground font-bold">البريد الإلكتروني</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-6 py-3 rounded-xl border-2 border-border focus:border-primary focus:outline-none transition-colors bg-background"
+                        placeholder="بريدك الإلكتروني"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="block text-foreground font-bold">الهاتف</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full px-6 py-3 rounded-xl border-2 border-border focus:border-primary focus:outline-none transition-colors bg-background"
+                        placeholder="رقم هاتفك"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="block text-foreground font-bold">الموضوع</label>
+                    <select
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-6 py-3 rounded-xl border-2 border-border focus:border-primary focus:outline-none transition-colors bg-background"
+                    >
+                      <option value="">اختر الموضوع</option>
+                      <option value="استشارة">استشارة هندسية</option>
+                      <option value="تصميم">طلب تصميم</option>
+                      <option value="إشراف">إشراف على مشروع</option>
+                      <option value="دراسة">دراسة هندسية</option>
+                      <option value="أخرى">أخرى</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="block text-foreground font-bold">الرسالة</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={6}
+                      className="w-full px-6 py-3 rounded-xl border-2 border-border focus:border-primary focus:outline-none transition-colors bg-background resize-none"
+                      placeholder="اكتب رسالتك هنا..."
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn-modern bg-gradient-to-r from-primary to-primary/80 text-white hover:shadow-2xl w-full hover:scale-105 transition-all duration-300"
+                  >
+                    إرسال الرسالة
+                    <ArrowRight className="inline-block ml-2 w-5 h-5" />
+                  </button>
+
+                  {submitted && (
+                    <div className="p-4 rounded-xl bg-green-100 text-green-700 font-bold text-center animate-slide-in-down">
+                      ✓ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.
+                    </div>
+                  )}
+                </form>
+              </div>
+
+              {/* FAQ */}
+              <div className="space-y-8">
+                <div>
+                  <h2 className="heading-modern text-primary mb-4">الأسئلة الشائعة</h2>
+                  <div className="divider-accent w-20 h-1 mb-6" />
+                </div>
+
+                <div className="space-y-4">
+                  {faqs.map((faq, index) => (
+                    <div
+                      key={index}
+                      className="card-modern p-6 group hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 cursor-pointer transition-all duration-300"
+                      style={{
+                        animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
+                      }}
+                    >
+                      <h3 className="text-lg font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+                        {faq.question}
+                      </h3>
+                      <p className="text-foreground/70 font-medium leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="section-modern bg-gradient-to-r from-primary via-primary/90 to-accent text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
+          </div>
+          <div className="container relative z-10 text-center">
+            <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight">
+              شكراً لاهتمامك بنا
             </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              تواصل معنا اليوم واحصل على استشارة مجانية من فريقنا المتخصص
+            <p className="text-2xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
+              نتطلع للعمل معك وتحقيق أحلامك الهندسية
             </p>
-            <a href={`tel:${CONTACT_PHONE}`}>
-              <button className="bg-white text-gray-900 px-8 py-3 rounded font-bold hover:bg-gray-100 transition">
-                اتصل بنا الآن
-              </button>
-            </a>
           </div>
         </section>
       </main>
@@ -257,4 +268,3 @@ export default function Contact() {
     </div>
   );
 }
-
