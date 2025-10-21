@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowRight, CheckCircle2, Zap, Award, Users } from "lucide-react";
+import { ArrowRight, Zap, Award, Users, Target } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
@@ -8,94 +8,98 @@ export default function Home() {
     {
       icon: "🏗️",
       title: "الأنشطة الهندسية",
-      description: "نقدم باقة متكاملة من الأنشطة الهندسية التي تغطي مختلف مراحل المشروع",
+      description: "حلول هندسية متكاملة من الفكرة إلى التنفيذ",
     },
     {
       icon: "📐",
       title: "الأعمال المساحية",
-      description: "خدمات رفع مساحي دقيقة باستخدام أحدث تقنيات GPS ونظم GIS",
+      description: "تقنيات GPS وGIS الحديثة لأعمال مساحية دقيقة",
     },
     {
       icon: "🎨",
-      title: "التصميم المعماري الخارجي",
-      description: "واجهات معمارية متميزة تعكس هوية المشروع وتتناغم مع البيئة",
-    },
-    {
-      icon: "🛋️",
-      title: "التصميم المعماري الداخلي",
-      description: "تصاميم داخلية متكاملة تركز على استغلال المساحات بذكاء",
+      title: "التصميم المعماري",
+      description: "تصاميم خارجية وداخلية احترافية وعصرية",
     },
     {
       icon: "👷",
       title: "الإشراف على المشاريع",
-      description: "خدمات إشراف هندسي شامل لضمان الالتزام بالمخططات والمواصفات",
+      description: "إشراف هندسي شامل وفعال على جميع المراحل",
     },
     {
       icon: "📊",
       title: "الدراسات الهندسية",
-      description: "دراسات فنية وهندسية متخصصة تدعم اتخاذ القرارات الصحيحة",
+      description: "دراسات فنية متخصصة تدعم قراراتك",
+    },
+    {
+      icon: "⚡",
+      title: "التصاميم الكهروميكانيكية",
+      description: "حلول متكاملة للأنظمة الكهربائية والميكانيكية",
     },
   ];
 
   const values = [
     {
-      icon: <Award className="w-8 h-8" />,
+      icon: <Award className="w-10 h-10" />,
       title: "الاحترافية",
-      description: "نلتزم بالمعايير المهنية في كل ما نقوم به",
+      description: "معايير عالية في كل عمل",
     },
     {
-      icon: <CheckCircle2 className="w-8 h-8" />,
-      title: "الشفافية",
-      description: "نعمل بنزاهة ووضوح في جميع تعاملاتنا",
+      icon: <Target className="w-10 h-10" />,
+      title: "الدقة",
+      description: "اهتمام بكل التفاصيل",
     },
     {
-      icon: <Zap className="w-8 h-8" />,
+      icon: <Zap className="w-10 h-10" />,
       title: "الابتكار",
-      description: "نبحث باستمرار عن حلول جديدة ومبدعة",
+      description: "حلول جديدة ومبدعة",
     },
     {
-      icon: <Users className="w-8 h-8" />,
+      icon: <Users className="w-10 h-10" />,
       title: "الالتزام",
-      description: "نحترم الوقت والميزانية والتوقعات",
+      description: "احترام الوقت والميزانية",
     },
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background overflow-hidden">
       <Header />
 
       <main className="flex-1">
-        {/* Hero Section - محسّن */}
-        <section className="relative overflow-hidden pt-20 pb-32 sm:pt-32 sm:pb-40">
-          {/* خلفية متدرجة */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5" />
+        {/* Hero Section - عصري جريء */}
+        <section className="relative overflow-hidden pt-20 pb-32 sm:pt-40 sm:pb-48">
+          {/* خلفيات متعددة الطبقات */}
+          <div className="absolute inset-0">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+            <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+          </div>
           
           <div className="container relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
+              <div className="space-y-8 animate-slide-in-up">
                 <div className="space-y-4">
                   <div className="inline-block">
-                    <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold">
-                      ✨ حلول هندسية متقدمة
+                    <span className="px-5 py-3 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 text-primary font-bold text-sm border border-primary/30">
+                      ✨ حلول هندسية عصرية
                     </span>
                   </div>
-                  <h1 className="heading-modern text-primary">
+                  <h1 className="heading-modern text-gradient">
                     الهندسة تبدأ من هنا
                   </h1>
-                  <p className="text-lg text-foreground/70 leading-relaxed max-w-lg">
-                    نقدم حلولًا هندسية متكاملة، حديثة، ومعتمدة، تسهم في تطوير بيئة عمرانية مستدامة وحديثة
+                  <p className="text-xl text-foreground/70 leading-relaxed max-w-lg font-medium">
+                    نقدم حلولًا هندسية متكاملة وحديثة تسهم في تطوير بيئة عمرانية مستدامة
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Link href="/contact">
-                    <button className="btn-modern bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
+                    <button className="btn-modern bg-gradient-to-r from-primary to-primary/80 text-white hover:shadow-2xl w-full sm:w-auto">
                       احصل على استشارة
                       <ArrowRight className="inline-block ml-2 w-5 h-5" />
                     </button>
                   </Link>
                   <Link href="/services">
-                    <button className="btn-modern border-2 border-primary text-primary hover:bg-primary/5 w-full sm:w-auto">
+                    <button className="btn-modern border-2 border-primary text-primary hover:bg-primary/5 w-full sm:w-auto font-bold">
                       اعرف الخدمات
                     </button>
                   </Link>
@@ -103,41 +107,42 @@ export default function Home() {
 
                 {/* إحصائيات سريعة */}
                 <div className="grid grid-cols-3 gap-4 pt-8 border-t border-border">
-                  <div>
-                    <div className="text-2xl font-bold text-primary">50+</div>
-                    <p className="text-sm text-foreground/60">مشروع منفذ</p>
+                  <div className="text-center">
+                    <div className="text-3xl font-black text-gradient">50+</div>
+                    <p className="text-sm text-foreground/60 font-medium">مشروع منفذ</p>
                   </div>
-                  <div>
-                    <div className="text-2xl font-bold text-primary">15+</div>
-                    <p className="text-sm text-foreground/60">سنة خبرة</p>
+                  <div className="text-center">
+                    <div className="text-3xl font-black text-gradient">15+</div>
+                    <p className="text-sm text-foreground/60 font-medium">سنة خبرة</p>
                   </div>
-                  <div>
-                    <div className="text-2xl font-bold text-primary">100+</div>
-                    <p className="text-sm text-foreground/60">عميل راضي</p>
+                  <div className="text-center">
+                    <div className="text-3xl font-black text-gradient">100+</div>
+                    <p className="text-sm text-foreground/60 font-medium">عميل راضي</p>
                   </div>
                 </div>
               </div>
 
               {/* الصورة */}
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl blur-3xl" />
+              <div className="relative animate-slide-in-down">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-3xl blur-2xl" />
                 <img
                   src="/interior-design.jpg"
                   alt="تصميم داخلي عصري"
-                  className="relative rounded-2xl shadow-2xl w-full h-auto object-cover"
+                  className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-2 border-primary/20"
                 />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Services Grid - محسّن */}
-        <section className="section-modern bg-white">
+        {/* Services Grid - عصري جريء */}
+        <section className="section-modern bg-gradient-to-b from-transparent via-primary/5 to-transparent">
           <div className="container">
-            <div className="text-center mb-16">
+            <div className="text-center mb-20">
               <h2 className="heading-modern text-primary mb-4">خدماتنا الهندسية</h2>
-              <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-                نقدم لكم مجموعة من أهم الخدمات الهندسية المتكاملة والمتخصصة
+              <div className="divider-accent w-20 h-1 mx-auto mb-6" />
+              <p className="text-xl text-foreground/70 max-w-2xl mx-auto font-medium">
+                مجموعة شاملة من الخدمات الهندسية المتكاملة والمتخصصة
               </p>
             </div>
 
@@ -145,14 +150,19 @@ export default function Home() {
               {services.map((service, index) => (
                 <div
                   key={index}
-                  className="card-modern p-8 group hover:border-primary/30 hover:bg-primary/5"
+                  className="card-modern p-8 group hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 cursor-pointer"
+                  style={{
+                    animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
+                  }}
                 >
-                  <div className="text-4xl mb-4">{service.icon}</div>
-                  <h3 className="text-xl font-bold text-primary mb-3">{service.title}</h3>
-                  <p className="text-foreground/70 leading-relaxed">{service.description}</p>
-                  <button className="mt-6 text-primary font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold text-primary mb-3">{service.title}</h3>
+                  <p className="text-foreground/70 leading-relaxed mb-6 font-medium">{service.description}</p>
+                  <button className="text-primary font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     اعرف أكثر
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-5 h-5" />
                   </button>
                 </div>
               ))}
@@ -160,24 +170,25 @@ export default function Home() {
           </div>
         </section>
 
-        {/* About Section - محسّن */}
-        <section className="section-modern bg-gradient-to-br from-primary/5 to-accent/5">
+        {/* About Section - عصري */}
+        <section className="section-modern bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10">
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
                 <div>
                   <h2 className="heading-modern text-primary mb-4">من نحن؟</h2>
-                  <p className="text-lg text-foreground/70 leading-relaxed">
+                  <div className="divider-accent w-20 h-1 mb-6" />
+                  <p className="text-lg text-foreground/70 leading-relaxed font-medium">
                     شركة هندسية سعودية معتمدة، متخصصة في تقديم حلول تصميم واستشارات هندسية شاملة ومتطورة.
                   </p>
                 </div>
 
-                <p className="text-foreground/70 leading-relaxed">
-                  نمتلك فريقًا مؤهلاً بخبرات طويلة في مختلف التخصصات الهندسية، ونلتزم بأحدث معايير التصميم والاستدامة، لنكون الشريك المثالي للعملاء الباحثين عن الجودة والدقة والموثوقية.
+                <p className="text-foreground/70 leading-relaxed font-medium">
+                  نمتلك فريقًا مؤهلاً بخبرات طويلة في مختلف التخصصات الهندسية، ونلتزم بأحدث معايير التصميم والاستدامة.
                 </p>
 
                 <Link href="/about">
-                  <button className="btn-modern bg-primary text-primary-foreground hover:bg-primary/90">
+                  <button className="btn-modern bg-gradient-to-r from-primary to-primary/80 text-white hover:shadow-2xl">
                     اعرف أكثر عننا
                     <ArrowRight className="inline-block ml-2 w-5 h-5" />
                   </button>
@@ -187,12 +198,18 @@ export default function Home() {
               {/* القيم */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {values.map((value, index) => (
-                  <div key={index} className="card-modern p-6 text-center">
-                    <div className="flex justify-center mb-4 text-primary">
+                  <div
+                    key={index}
+                    className="card-modern p-6 text-center group hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 hover-lift"
+                    style={{
+                      animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
+                    }}
+                  >
+                    <div className="flex justify-center mb-4 text-primary group-hover:scale-125 transition-transform duration-300">
                       {value.icon}
                     </div>
-                    <h3 className="text-lg font-bold text-primary mb-2">{value.title}</h3>
-                    <p className="text-sm text-foreground/70">{value.description}</p>
+                    <h3 className="text-xl font-bold text-primary mb-2">{value.title}</h3>
+                    <p className="text-sm text-foreground/70 font-medium">{value.description}</p>
                   </div>
                 ))}
               </div>
@@ -200,17 +217,21 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA Section - محسّن */}
-        <section className="section-modern bg-gradient-to-r from-primary to-primary/80 text-white">
-          <div className="container text-center">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+        {/* CTA Section - جريء */}
+        <section className="section-modern bg-gradient-to-r from-primary via-primary/90 to-accent text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
+          </div>
+          <div className="container relative z-10 text-center">
+            <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight">
               هل تريد استشارة هندسية؟
             </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              تواصل معنا اليوم واحصل على استشارة مجانية من فريقنا المتخصص والمؤهل
+            <p className="text-2xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
+              تواصل معنا اليوم واحصل على استشارة مجانية من فريقنا المتخصص
             </p>
             <Link href="/contact">
-              <button className="btn-modern bg-white text-primary hover:bg-white/90">
+              <button className="btn-modern bg-white text-primary hover:bg-white/90 hover:shadow-2xl font-black">
                 تواصل معنا الآن
                 <ArrowRight className="inline-block ml-2 w-5 h-5" />
               </button>
@@ -223,4 +244,3 @@ export default function Home() {
     </div>
   );
 }
-

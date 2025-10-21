@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -44,34 +44,34 @@
 }
 
 :root {
-  --radius: 12px;
+  --radius: 16px;
   
-  /* الألوان الأساسية - أزرق عصري */
-  --primary: oklch(0.28 0.12 260);
+  /* الألوان الأساسية - أزرق عصري جريء */
+  --primary: oklch(0.32 0.18 260);
   --primary-foreground: oklch(1 0 0);
   
   /* الخلفيات */
-  --background: oklch(0.99 0.001 260);
-  --foreground: oklch(0.18 0.02 260);
+  --background: oklch(0.98 0.001 260);
+  --foreground: oklch(0.15 0.03 260);
   
   /* البطاقات */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 260);
+  --card-foreground: oklch(0.15 0.03 260);
   
   /* الـ Popover */
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 260);
+  --popover-foreground: oklch(0.15 0.03 260);
   
   /* الألوان الثانوية */
-  --secondary: oklch(0.15 0.08 260);
+  --secondary: oklch(0.12 0.12 260);
   --secondary-foreground: oklch(1 0 0);
   
   /* الألوان المخففة */
   --muted: oklch(0.92 0.001 0);
-  --muted-foreground: oklch(0.45 0.05 260);
+  --muted-foreground: oklch(0.45 0.08 260);
   
-  /* الألوان البارزة - برتقالي عصري */
-  --accent: oklch(0.65 0.18 40);
+  /* الألوان البارزة - برتقالي جريء */
+  --accent: oklch(0.68 0.22 35);
   --accent-foreground: oklch(1 0 0);
   
   /* الألوان الخطرة */
@@ -81,44 +81,44 @@
   /* الحدود والمدخلات */
   --border: oklch(0.92 0.004 260);
   --input: oklch(0.95 0.001 260);
-  --ring: oklch(0.28 0.12 260);
+  --ring: oklch(0.32 0.18 260);
   
   /* الـ Sidebar */
   --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.18 0.02 260);
-  --sidebar-primary: oklch(0.28 0.12 260);
+  --sidebar-foreground: oklch(0.15 0.03 260);
+  --sidebar-primary: oklch(0.32 0.18 260);
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.92 0.001 0);
-  --sidebar-accent-foreground: oklch(0.18 0.02 260);
+  --sidebar-accent-foreground: oklch(0.15 0.03 260);
   --sidebar-border: oklch(0.92 0.004 260);
-  --sidebar-ring: oklch(0.28 0.12 260);
+  --sidebar-ring: oklch(0.32 0.18 260);
   
   /* الرسوم البيانية */
-  --chart-1: oklch(0.28 0.12 260);
-  --chart-2: oklch(0.65 0.18 40);
-  --chart-3: oklch(0.45 0.12 200);
-  --chart-4: oklch(0.55 0.12 320);
-  --chart-5: oklch(0.35 0.12 280);
+  --chart-1: oklch(0.32 0.18 260);
+  --chart-2: oklch(0.68 0.22 35);
+  --chart-3: oklch(0.45 0.15 200);
+  --chart-4: oklch(0.55 0.15 320);
+  --chart-5: oklch(0.35 0.15 280);
 }
 
 .dark {
-  --primary: oklch(0.5 0.15 260);
+  --primary: oklch(0.55 0.2 260);
   --primary-foreground: oklch(0.98 0 0);
-  --background: oklch(0.12 0.01 260);
-  --foreground: oklch(0.92 0.01 260);
-  --card: oklch(0.18 0.01 260);
-  --card-foreground: oklch(0.92 0.01 260);
-  --popover: oklch(0.18 0.01 260);
-  --popover-foreground: oklch(0.92 0.01 260);
-  --secondary: oklch(0.4 0.1 260);
+  --background: oklch(0.1 0.01 260);
+  --foreground: oklch(0.95 0.01 260);
+  --card: oklch(0.16 0.01 260);
+  --card-foreground: oklch(0.95 0.01 260);
+  --popover: oklch(0.16 0.01 260);
+  --popover-foreground: oklch(0.95 0.01 260);
+  --secondary: oklch(0.45 0.12 260);
   --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.25 0.01 260);
-  --muted-foreground: oklch(0.65 0.05 260);
-  --accent: oklch(0.75 0.2 40);
-  --accent-foreground: oklch(0.12 0.01 260);
-  --border: oklch(0.25 0.01 260);
-  --input: oklch(0.2 0.01 260);
-  --ring: oklch(0.5 0.15 260);
+  --muted: oklch(0.22 0.01 260);
+  --muted-foreground: oklch(0.68 0.08 260);
+  --accent: oklch(0.78 0.25 35);
+  --accent-foreground: oklch(0.1 0.01 260);
+  --border: oklch(0.22 0.01 260);
+  --input: oklch(0.18 0.01 260);
+  --ring: oklch(0.55 0.2 260);
 }
 
 @layer base {
@@ -162,24 +162,112 @@
 }
 
 @layer components {
-  /* بطاقات محسنة */
+  /* بطاقات محسنة مع تأثيرات جريئة */
   .card-modern {
-    @apply bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition-all duration-300;
+    @apply bg-card rounded-2xl border border-border shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1;
+  }
+  
+  .card-modern:hover {
+    box-shadow: 0 20px 40px rgba(50, 100, 200, 0.15);
   }
   
   /* أزرار محسنة */
   .btn-modern {
-    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg;
+    @apply px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:shadow-xl active:scale-95 text-lg;
   }
   
   /* أقسام محسنة */
   .section-modern {
-    @apply py-16 sm:py-20 lg:py-24;
+    @apply py-20 sm:py-28 lg:py-32;
   }
   
   /* عناوين محسنة */
   .heading-modern {
-    @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight;
+    @apply text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight;
+  }
+  
+  /* تأثيرات Gradient */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+  
+  /* تأثيرات الحركة */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(50, 100, 200, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(50, 100, 200, 0.6);
+    }
+  }
+  
+  .animate-slide-in-up {
+    animation: slideInUp 0.6s ease-out;
+  }
+  
+  .animate-slide-in-down {
+    animation: slideInDown 0.6s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  /* تأثيرات النص */
+  .text-gradient {
+    background: linear-gradient(135deg, #3264c8 0%, #ff7a00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* تأثيرات الـ Hover */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg;
+  }
+  
+  /* خطوط مزخرفة */
+  .divider-accent {
+    @apply h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full;
   }
 }
 

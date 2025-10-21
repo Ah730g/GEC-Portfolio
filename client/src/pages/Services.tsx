@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Services() {
@@ -9,67 +9,67 @@ export default function Services() {
       id: 1,
       icon: "🏗️",
       title: "الأنشطة الهندسية",
-      description: "نقدم باقة متكاملة من الأنشطة الهندسية التي تغطي مختلف مراحل المشروع، من الفكرة إلى التنفيذ",
+      description: "حلول هندسية متكاملة من الفكرة إلى التنفيذ",
     },
     {
       id: 2,
       icon: "📐",
       title: "الأعمال المساحية",
-      description: "نقدّم خدمات رفع مساحي دقيقة باستخدام أحدث تقنيات GPS ونظم GIS",
+      description: "تقنيات GPS وGIS الحديثة لأعمال مساحية دقيقة",
     },
     {
       id: 3,
       icon: "🎨",
       title: "التصميم المعماري الخارجي",
-      description: "نبتكر واجهات معمارية متميزة تعكس هوية المشروع وتتناغم مع البيئة المحيطة",
+      description: "واجهات معمارية متميزة تعكس هوية المشروع",
     },
     {
       id: 4,
       icon: "🛋️",
       title: "التصميم المعماري الداخلي",
-      description: "نوفر تصاميم داخلية متكاملة تركز على استغلال المساحات بكفاءة عالية",
+      description: "تصاميم داخلية متكاملة وعصرية",
     },
     {
       id: 5,
       icon: "👷",
       title: "الإشراف على المشاريع",
-      description: "نقدم خدمات إشراف هندسي شامل لضمان الالتزام بالمخططات والمواصفات",
+      description: "إشراف هندسي شامل على جميع المراحل",
     },
     {
       id: 6,
       icon: "📊",
       title: "الدراسات الهندسية",
-      description: "نُعد دراسات فنية وهندسية متخصصة تدعم اتخاذ القرارات الصحيحة",
+      description: "دراسات فنية متخصصة تدعم قراراتك",
     },
     {
       id: 7,
       icon: "🌍",
       title: "الدراسات الجيولوجية والهيدرولوجية",
-      description: "نجري تحليلات علمية للتربة والخصائص الجيولوجية والهيدرولوجية",
+      description: "تحليلات علمية للتربة والخصائص الجيولوجية",
     },
     {
       id: 8,
       icon: "📋",
       title: "التقارير الهندسية",
-      description: "نعد تقارير تفصيلية وموثقة عن الحالة الفنية للمنشآت",
+      description: "تقارير تفصيلية وموثقة عن المنشآت",
     },
     {
       id: 9,
       icon: "⚡",
       title: "التصاميم الكهروميكانيكية",
-      description: "نوفر حلولًا متكاملة لأنظمة الكهرباء والميكانيكا والتكييف",
+      description: "حلول متكاملة للأنظمة الكهربائية والميكانيكية",
     },
     {
       id: 10,
       icon: "💡",
       title: "تصاميم الكهرباء",
-      description: "نصمم شبكات توزيع الطاقة والإضاءة وأنظمة الإنذار الحديثة",
+      description: "شبكات توزيع الطاقة والإضاءة الحديثة",
     },
     {
       id: 11,
       icon: "🔒",
       title: "تصاميم السلامة",
-      description: "نخطط ونصمم أنظمة السلامة والحماية من الحريق والكوارث",
+      description: "أنظمة السلامة والحماية من الحريق",
     },
   ];
 
@@ -77,35 +77,40 @@ export default function Services() {
     {
       number: "01",
       title: "الاستشارة",
-      description: "نستمع إلى احتياجاتك ومتطلبات مشروعك بعناية",
+      description: "نستمع إلى احتياجاتك بعناية",
     },
     {
       number: "02",
       title: "التخطيط",
-      description: "نضع خطة شاملة وتفصيلية لتنفيذ المشروع",
+      description: "خطة شاملة وتفصيلية",
     },
     {
       number: "03",
       title: "التنفيذ",
-      description: "نقوم بتنفيذ المشروع بأعلى معايير الجودة",
+      description: "تنفيذ بأعلى المعايير",
     },
     {
       number: "04",
       title: "التسليم",
-      description: "نسلم المشروع مكتملاً وفقاً للمواصفات المتفق عليها",
+      description: "تسليم مكتمل وموثق",
     },
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background overflow-hidden">
       <Header />
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden pt-20 pb-16 sm:pt-32 sm:pb-20 bg-gradient-to-br from-primary/10 to-accent/5">
-          <div className="container">
-            <h1 className="heading-modern text-primary mb-4">خدماتنا الهندسية</h1>
-            <p className="text-xl text-foreground/70 max-w-2xl">
+        <section className="relative overflow-hidden pt-20 pb-16 sm:pt-40 sm:pb-24">
+          <div className="absolute inset-0">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+          </div>
+          <div className="container relative z-10">
+            <h1 className="heading-modern text-gradient mb-4">خدماتنا الهندسية</h1>
+            <div className="divider-accent w-20 h-1 mb-6" />
+            <p className="text-2xl text-foreground/70 max-w-2xl font-medium">
               مجموعة شاملة من الخدمات الهندسية المتكاملة والمتخصصة
             </p>
           </div>
@@ -115,17 +120,22 @@ export default function Services() {
         <section className="section-modern">
           <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service) => (
+              {services.map((service, index) => (
                 <div
                   key={service.id}
-                  className="card-modern p-8 group hover:border-primary/30 hover:bg-primary/5 transition-all"
+                  className="card-modern p-8 group hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 cursor-pointer"
+                  style={{
+                    animation: `slideInUp 0.6s ease-out ${index * 0.08}s both`,
+                  }}
                 >
-                  <div className="text-5xl mb-4">{service.icon}</div>
-                  <h3 className="text-xl font-bold text-primary mb-3">{service.title}</h3>
-                  <p className="text-foreground/70 leading-relaxed mb-6">{service.description}</p>
-                  <button className="text-primary font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                  <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold text-primary mb-3">{service.title}</h3>
+                  <p className="text-foreground/70 leading-relaxed mb-6 font-medium">{service.description}</p>
+                  <button className="text-primary font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     اعرف أكثر
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-5 h-5" />
                   </button>
                 </div>
               ))}
@@ -134,23 +144,30 @@ export default function Services() {
         </section>
 
         {/* Process Section */}
-        <section className="section-modern bg-gradient-to-br from-primary/5 to-accent/5">
+        <section className="section-modern bg-gradient-to-b from-primary/5 via-accent/5 to-primary/5">
           <div className="container">
-            <div className="text-center mb-16">
+            <div className="text-center mb-20">
               <h2 className="heading-modern text-primary mb-4">عملية الخدمة</h2>
-              <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+              <div className="divider-accent w-20 h-1 mx-auto mb-6" />
+              <p className="text-xl text-foreground/70 max-w-2xl mx-auto font-medium">
                 نتبع منهجية واضحة وفعالة في تقديم خدماتنا
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {processSteps.map((step, index) => (
-                <div key={index} className="card-modern p-8 text-center">
-                  <div className="text-5xl font-bold text-primary/20 mb-4">
+                <div
+                  key={index}
+                  className="card-modern p-8 text-center group hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 hover-lift"
+                  style={{
+                    animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
+                  }}
+                >
+                  <div className="text-6xl font-black text-gradient mb-4">
                     {step.number}
                   </div>
-                  <h3 className="text-xl font-bold text-primary mb-3">{step.title}</h3>
-                  <p className="text-foreground/70">{step.description}</p>
+                  <h3 className="text-2xl font-bold text-primary mb-3">{step.title}</h3>
+                  <p className="text-foreground/70 font-medium">{step.description}</p>
                 </div>
               ))}
             </div>
@@ -158,16 +175,20 @@ export default function Services() {
         </section>
 
         {/* CTA Section */}
-        <section className="section-modern bg-gradient-to-r from-primary to-primary/80 text-white">
-          <div className="container text-center">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+        <section className="section-modern bg-gradient-to-r from-primary via-primary/90 to-accent text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
+          </div>
+          <div className="container relative z-10 text-center">
+            <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight">
               اختر الخدمة المناسبة لك
             </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+            <p className="text-2xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
               تواصل معنا اليوم واحصل على عرض سعر مخصص لمشروعك
             </p>
             <Link href="/contact">
-              <button className="btn-modern bg-white text-primary hover:bg-white/90">
+              <button className="btn-modern bg-white text-primary hover:bg-white/90 hover:shadow-2xl font-black">
                 احصل على عرض سعر
                 <ArrowRight className="inline-block ml-2 w-5 h-5" />
               </button>
