@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -48,226 +47,472 @@
   
   /* الألوان الأساسية - أزرق عصري جريء */
   --primary: oklch(0.32 0.18 260);
-  --primary-foreground: oklch(1 0 0);
+  --primary-foreground: oklch(0.98 0.01 0);
   
-  /* الخلفيات */
-  --background: oklch(0.98 0.001 260);
-  --foreground: oklch(0.15 0.03 260);
+  /* اللون الثانوي - برتقالي حيوي */
+  --accent: oklch(0.65 0.25 45);
+  --accent-foreground: oklch(0.98 0.01 0);
   
-  /* البطاقات */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.03 260);
+  /* الخلفيات والحدود */
+  --background: oklch(0.98 0.01 0);
+  --foreground: oklch(0.15 0.02 260);
+  --card: oklch(0.99 0.01 0);
+  --card-foreground: oklch(0.15 0.02 260);
+  --border: oklch(0.92 0.01 260);
+  --input: oklch(0.98 0.01 0);
+  --muted: oklch(0.88 0.01 260);
+  --muted-foreground: oklch(0.45 0.02 260);
   
-  /* الـ Popover */
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.03 260);
-  
-  /* الألوان الثانوية */
-  --secondary: oklch(0.12 0.12 260);
-  --secondary-foreground: oklch(1 0 0);
-  
-  /* الألوان المخففة */
-  --muted: oklch(0.92 0.001 0);
-  --muted-foreground: oklch(0.45 0.08 260);
-  
-  /* الألوان البارزة - برتقالي جريء */
-  --accent: oklch(0.68 0.22 35);
-  --accent-foreground: oklch(1 0 0);
-  
-  /* الألوان الخطرة */
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  
-  /* الحدود والمدخلات */
-  --border: oklch(0.92 0.004 260);
-  --input: oklch(0.95 0.001 260);
+  /* ألوان إضافية */
+  --secondary: oklch(0.45 0.15 260);
+  --secondary-foreground: oklch(0.98 0.01 0);
+  --destructive: oklch(0.63 0.25 30);
+  --destructive-foreground: oklch(0.98 0.01 0);
   --ring: oklch(0.32 0.18 260);
   
-  /* الـ Sidebar */
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.15 0.03 260);
-  --sidebar-primary: oklch(0.32 0.18 260);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.92 0.001 0);
-  --sidebar-accent-foreground: oklch(0.15 0.03 260);
-  --sidebar-border: oklch(0.92 0.004 260);
-  --sidebar-ring: oklch(0.32 0.18 260);
-  
-  /* الرسوم البيانية */
+  /* ألوان الرسوم البيانية */
   --chart-1: oklch(0.32 0.18 260);
-  --chart-2: oklch(0.68 0.22 35);
-  --chart-3: oklch(0.45 0.15 200);
-  --chart-4: oklch(0.55 0.15 320);
-  --chart-5: oklch(0.35 0.15 280);
+  --chart-2: oklch(0.65 0.25 45);
+  --chart-3: oklch(0.55 0.20 150);
+  --chart-4: oklch(0.70 0.20 30);
+  --chart-5: oklch(0.50 0.15 280);
+  
+  /* Sidebar */
+  --sidebar: oklch(0.98 0.01 0);
+  --sidebar-foreground: oklch(0.15 0.02 260);
+  --sidebar-primary: oklch(0.32 0.18 260);
+  --sidebar-primary-foreground: oklch(0.98 0.01 0);
+  --sidebar-accent: oklch(0.65 0.25 45);
+  --sidebar-accent-foreground: oklch(0.98 0.01 0);
+  --sidebar-border: oklch(0.92 0.01 260);
+  --sidebar-ring: oklch(0.32 0.18 260);
 }
 
 .dark {
-  --primary: oklch(0.55 0.2 260);
-  --primary-foreground: oklch(0.98 0 0);
-  --background: oklch(0.1 0.01 260);
+  --primary: oklch(0.55 0.20 260);
+  --primary-foreground: oklch(0.15 0.02 260);
+  --accent: oklch(0.75 0.22 45);
+  --accent-foreground: oklch(0.15 0.02 260);
+  --background: oklch(0.12 0.01 260);
   --foreground: oklch(0.95 0.01 260);
-  --card: oklch(0.16 0.01 260);
+  --card: oklch(0.18 0.02 260);
   --card-foreground: oklch(0.95 0.01 260);
-  --popover: oklch(0.16 0.01 260);
-  --popover-foreground: oklch(0.95 0.01 260);
-  --secondary: oklch(0.45 0.12 260);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.22 0.01 260);
-  --muted-foreground: oklch(0.68 0.08 260);
-  --accent: oklch(0.78 0.25 35);
-  --accent-foreground: oklch(0.1 0.01 260);
-  --border: oklch(0.22 0.01 260);
-  --input: oklch(0.18 0.01 260);
-  --ring: oklch(0.55 0.2 260);
+  --border: oklch(0.25 0.02 260);
+  --input: oklch(0.18 0.02 260);
+  --muted: oklch(0.35 0.02 260);
+  --muted-foreground: oklch(0.70 0.02 260);
+  --secondary: oklch(0.60 0.15 260);
+  --secondary-foreground: oklch(0.15 0.02 260);
+  --destructive: oklch(0.73 0.25 30);
+  --destructive-foreground: oklch(0.15 0.02 260);
+  --ring: oklch(0.55 0.20 260);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  html {
-    font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    direction: rtl;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    direction: rtl;
-    text-align: right;
-  }
-  button:not(:disabled),
-  [role="button"]:not([aria-disabled="true"]),
-  [type="button"]:not(:disabled),
-  [type="submit"]:not(:disabled),
-  [type="reset"]:not(:disabled) {
-    @apply cursor-pointer;
-  }
-  input,
-  button,
-  textarea,
-  select {
-    font-family: inherit;
-  }
-  p {
-    @apply leading-7;
-  }
-  a {
-    @apply text-primary hover:text-primary/80 transition-colors;
-  }
-  
-  /* تحسينات إضافية */
+/* ==================== Global Styles ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  direction: rtl;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ==================== Typography ==================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 700;
+}
+
+h4 {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 700;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ==================== Layout Classes ==================== */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
   .container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    padding: 0 1.5rem;
   }
 }
 
-@layer components {
-  /* بطاقات محسنة مع تأثيرات جريئة */
-  .card-modern {
-    @apply bg-card rounded-2xl border border-border shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1;
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 2rem;
   }
-  
-  .card-modern:hover {
-    box-shadow: 0 20px 40px rgba(50, 100, 200, 0.15);
-  }
-  
-  /* أزرار محسنة */
-  .btn-modern {
-    @apply px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:shadow-xl active:scale-95 text-lg;
-  }
-  
-  /* أقسام محسنة */
+}
+
+/* ==================== Section Styles ==================== */
+.section-modern {
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
   .section-modern {
-    @apply py-20 sm:py-28 lg:py-32;
+    padding: 6rem 0;
+  }
+}
+
+/* ==================== Card Styles ==================== */
+.card-modern {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.05) 100%);
+  pointer-events: none;
+}
+
+.card-modern:hover {
+  border-color: var(--primary);
+  box-shadow: 0 20px 40px rgba(50, 100, 200, 0.15);
+  transform: translateY(-4px);
+}
+
+/* ==================== Button Styles ==================== */
+.btn-modern {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.875rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn-modern::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-modern:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-modern:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ==================== Text Gradient ==================== */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==================== Heading Modern ==================== */
+.heading-modern {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--foreground);
+}
+
+/* ==================== Divider ==================== */
+.divider-accent {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  border-radius: 999px;
+}
+
+/* ==================== Hover Lift Effect ==================== */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(50, 100, 200, 0.2);
+}
+
+/* ==================== Animations ==================== */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.animate-slide-in-down {
+  animation: slideInDown 0.6s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* ==================== Form Styles ==================== */
+input, textarea, select {
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--foreground);
+  background-color: var(--input);
+  border: 2px solid var(--border);
+  border-radius: 0.875rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(50, 100, 200, 0.1);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+/* ==================== Scrollbar Styles ==================== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ==================== Selection Styles ==================== */
+::selection {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ==================== Focus Visible ==================== */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ==================== Accessibility ==================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ==================== Skip to Content Link ==================== */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* ==================== Responsive Typography ==================== */
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
   }
   
-  /* عناوين محسنة */
-  .heading-modern {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight;
+  h1 {
+    font-size: 1.75rem;
   }
   
-  /* تأثيرات Gradient */
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  h2 {
+    font-size: 1.5rem;
   }
   
-  /* تأثيرات الحركة */
-  @keyframes slideInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* ==================== Print Styles ==================== */
+@media print {
+  body {
+    background: white;
+    color: black;
   }
   
-  @keyframes slideInDown {
-    from {
-      opacity: 0;
-      transform: translateY(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  a {
+    text-decoration: underline;
   }
   
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  .no-print {
+    display: none;
+  }
+}
+
+/* ==================== Reduced Motion ==================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==================== High Contrast Mode ==================== */
+@media (prefers-contrast: more) {
+  .card-modern {
+    border-width: 3px;
   }
   
-  @keyframes pulse-glow {
-    0%, 100% {
-      box-shadow: 0 0 20px rgba(50, 100, 200, 0.3);
-    }
-    50% {
-      box-shadow: 0 0 40px rgba(50, 100, 200, 0.6);
-    }
-  }
-  
-  .animate-slide-in-up {
-    animation: slideInUp 0.6s ease-out;
-  }
-  
-  .animate-slide-in-down {
-    animation: slideInDown 0.6s ease-out;
-  }
-  
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out;
-  }
-  
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-  
-  /* تأثيرات النص */
-  .text-gradient {
-    background: linear-gradient(135deg, #3264c8 0%, #ff7a00 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  /* تأثيرات الـ Hover */
-  .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
-  }
-  
-  .hover-glow {
-    @apply transition-all duration-300 hover:shadow-lg;
-  }
-  
-  /* خطوط مزخرفة */
-  .divider-accent {
-    @apply h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full;
+  button {
+    border-width: 2px;
   }
 }
 
