@@ -6,11 +6,25 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
+  const [stats, setStats] = useState({ projects: 0, years: 0, clients: 0 });
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Animation للأرقام
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStats((prev) => ({
+        projects: prev.projects < 50 ? prev.projects + 1 : 50,
+        years: prev.years < 15 ? prev.years + 1 : 15,
+        clients: prev.clients < 100 ? prev.clients + 1 : 100,
+      }));
+    }, 20);
+
+    return () => clearInterval(interval);
   }, []);
 
   const services = [
@@ -81,9 +95,8 @@ export default function Home() {
       <Header />
 
       <main className="flex-1">
-        {/* Hero Section - مع Parallax Effect */}
-        <section className="relative overflow-hidden pt-20 pb-32 sm:pt-40 sm:pb-48">
-          {/* خلفيات متعددة الطبقات مع Parallax */}
+        {/* Hero Section */}
+        <section className="relative overflow-hidden pt-20 pb-20 sm:pt-32 sm:pb-32">
           <div className="absolute inset-0">
             <div
               className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl transition-transform duration-300"
@@ -93,78 +106,87 @@ export default function Home() {
               className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl transition-transform duration-300"
               style={{ transform: `translateY(${scrollY * -0.3}px)` }}
             />
-            <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
           </div>
 
           <div className="container relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8 animate-slide-in-up">
-                <div className="space-y-4">
-                  <div className="inline-block">
-                    <span className="px-5 py-3 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 text-primary font-bold text-sm border border-primary/30 hover:border-primary/60 transition-colors">
-                      ✨ حلول هندسية عصرية
-                    </span>
-                  </div>
-                  <h1 className="heading-modern text-gradient">
+              {/* Text Content */}
+              <div className="space-y-8">
+                <div>
+                  <h1 className="heading-modern text-gradient mb-4">
                     الهندسة تبدأ من هنا
                   </h1>
-                  <p className="text-xl text-foreground/70 leading-relaxed max-w-lg font-medium">
-                    نقدم حلولًا هندسية متكاملة وحديثة تسهم في تطوير بيئة عمرانية مستدامة
-                  </p>
+                  <div className="divider-accent w-20 h-1 mb-6" />
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <p className="text-xl text-foreground/70 leading-relaxed font-medium">
+                  نقدم حلولاً هندسية متكاملة وحديثة تسهم في تطوير البيئة العمرانية والصناعية بشكل مستدام
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4">
                   <Link href="/contact">
-                    <button className="btn-modern bg-gradient-to-r from-primary to-primary/80 text-white hover:shadow-2xl hover:scale-105 w-full sm:w-auto transition-all duration-300">
+                    <button className="btn-modern bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg font-bold">
                       احصل على استشارة
-                      <ArrowRight className="inline-block ml-2 w-5 h-5" />
+                      <ArrowRight className="w-5 h-5 ml-2" />
                     </button>
                   </Link>
                   <Link href="/services">
-                    <button className="btn-modern border-2 border-primary text-primary hover:bg-primary/5 w-full sm:w-auto font-bold transition-all duration-300">
+                    <button className="btn-modern border-2 border-primary text-primary hover:bg-primary/10 font-bold">
                       اعرف الخدمات
+                      <ArrowRight className="w-5 h-5 ml-2" />
                     </button>
                   </Link>
                 </div>
-
-                {/* إحصائيات سريعة */}
-                <div className="grid grid-cols-3 gap-4 pt-8 border-t border-border">
-                  <div className="text-center group hover:scale-110 transition-transform duration-300">
-                    <div className="text-3xl font-black text-gradient">50+</div>
-                    <p className="text-sm text-foreground/60 font-medium">مشروع منفذ</p>
-                  </div>
-                  <div className="text-center group hover:scale-110 transition-transform duration-300">
-                    <div className="text-3xl font-black text-gradient">15+</div>
-                    <p className="text-sm text-foreground/60 font-medium">سنة خبرة</p>
-                  </div>
-                  <div className="text-center group hover:scale-110 transition-transform duration-300">
-                    <div className="text-3xl font-black text-gradient">100+</div>
-                    <p className="text-sm text-foreground/60 font-medium">عميل راضي</p>
-                  </div>
-                </div>
               </div>
 
-              {/* الصورة مع Hover Effect */}
-              <div className="relative animate-slide-in-down group">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-300" />
+              {/* Image */}
+              <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/interior-design.jpg"
-                  alt="تصميم داخلي عصري"
-                  className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-2 border-primary/20 group-hover:border-primary/50 transition-all duration-300 group-hover:scale-105"
+                  src="/hero-building.jpg"
+                  alt="مشروع معماري"
+                  className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Services Grid */}
-        <section className="section-modern bg-gradient-to-b from-transparent via-primary/5 to-transparent">
+        {/* Statistics Section */}
+        <section className="section-modern bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10">
           <div className="container">
-            <div className="text-center mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              {[
+                { label: "مشروع منجز", value: stats.projects, suffix: "+" },
+                { label: "سنة خبرة", value: stats.years, suffix: "" },
+                { label: "عميل راضي", value: stats.clients, suffix: "+" },
+              ].map((stat, index) => (
+                <div
+                  key={index}
+                  className="card-modern p-8 text-center group hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 hover-lift"
+                  style={{
+                    animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
+                  }}
+                >
+                  <div className="text-5xl sm:text-6xl font-black text-gradient mb-3">
+                    {stat.value}
+                    {stat.suffix}
+                  </div>
+                  <p className="text-lg text-foreground/70 font-bold">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Services Section */}
+        <section className="section-modern">
+          <div className="container">
+            <div className="text-center mb-16">
               <h2 className="heading-modern text-primary mb-4">خدماتنا الهندسية</h2>
               <div className="divider-accent w-20 h-1 mx-auto mb-6" />
               <p className="text-xl text-foreground/70 max-w-2xl mx-auto font-medium">
-                مجموعة شاملة من الخدمات الهندسية المتكاملة والمتخصصة
+                مجموعة شاملة من الخدمات المتخصصة
               </p>
             </div>
 
@@ -172,7 +194,7 @@ export default function Home() {
               {services.map((service, index) => (
                 <div
                   key={index}
-                  className="card-modern p-8 group hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 cursor-pointer"
+                  className="card-modern p-8 group hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 cursor-pointer hover-lift"
                   style={{
                     animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
                   }}
@@ -180,20 +202,57 @@ export default function Home() {
                   <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
                     {service.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-primary mb-3">{service.title}</h3>
-                  <p className="text-foreground/70 leading-relaxed mb-6 font-medium">{service.description}</p>
-                  <button className="text-primary font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    اعرف أكثر
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
+                  <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-foreground/70 leading-relaxed font-medium">
+                    {service.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link href="/services">
+                <button className="btn-modern bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg font-bold">
+                  عرض جميع الخدمات
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Values Section */}
+        <section className="section-modern bg-gradient-to-b from-primary/5 to-transparent">
+          <div className="container">
+            <div className="text-center mb-16">
+              <h2 className="heading-modern text-primary mb-4">قيمنا الأساسية</h2>
+              <div className="divider-accent w-20 h-1 mx-auto mb-6" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {values.map((value, index) => (
+                <div
+                  key={index}
+                  className="card-modern p-8 text-center group hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 hover-lift"
+                  style={{
+                    animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
+                  }}
+                >
+                  <div className="flex justify-center mb-4 text-primary group-hover:scale-125 transition-transform duration-300">
+                    {value.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-primary mb-2">{value.title}</h3>
+                  <p className="text-foreground/70 font-medium text-sm">{value.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Benefits Section */}
-        <section className="section-modern bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10">
+        {/* Why Choose Us */}
+        <section className="section-modern">
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
@@ -206,7 +265,7 @@ export default function Home() {
                   {benefits.map((benefit, index) => (
                     <div
                       key={index}
-                      className="flex items-start gap-4 p-4 rounded-xl hover:bg-primary/5 transition-colors duration-300"
+                      className="flex items-start gap-4 p-4 rounded-lg hover:bg-primary/5 transition-colors"
                       style={{
                         animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
                       }}
@@ -216,32 +275,15 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-
-                <Link href="/about">
-                  <button className="btn-modern bg-gradient-to-r from-primary to-primary/80 text-white hover:shadow-2xl">
-                    اعرف أكثر عننا
-                    <ArrowRight className="inline-block ml-2 w-5 h-5" />
-                  </button>
-                </Link>
               </div>
 
-              {/* القيم */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {values.map((value, index) => (
-                  <div
-                    key={index}
-                    className="card-modern p-6 text-center group hover:border-primary/50 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 hover-lift"
-                    style={{
-                      animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
-                    }}
-                  >
-                    <div className="flex justify-center mb-4 text-primary group-hover:scale-125 transition-transform duration-300">
-                      {value.icon}
-                    </div>
-                    <h3 className="text-xl font-bold text-primary mb-2">{value.title}</h3>
-                    <p className="text-sm text-foreground/70 font-medium">{value.description}</p>
-                  </div>
-                ))}
+              <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src="/interior-design.jpg"
+                  alt="تصميم داخلي"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
               </div>
             </div>
           </div>
@@ -254,15 +296,15 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
           </div>
           <div className="container relative z-10 text-center">
-            <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight">
+            <h2 className="text-4xl sm:text-5xl font-black mb-6 leading-tight">
               هل تريد استشارة هندسية؟
             </h2>
-            <p className="text-2xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
               تواصل معنا اليوم واحصل على استشارة مجانية من فريقنا المتخصص
             </p>
             <Link href="/contact">
               <button className="btn-modern bg-white text-primary hover:bg-white/90 hover:shadow-2xl font-black hover:scale-105 transition-all duration-300">
-                تواصل معنا الآن
+                احجز استشارة الآن
                 <ArrowRight className="inline-block ml-2 w-5 h-5" />
               </button>
             </Link>
