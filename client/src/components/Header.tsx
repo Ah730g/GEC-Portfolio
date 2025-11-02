@@ -1,4 +1,4 @@
-import { NAV_MENU, APP_TITLE, CONTACT_PHONE, CONTACT_EMAIL } from "@/const";
+import { NAV_MENU, APP_TITLE, APP_LOGO, CONTACT_PHONE, CONTACT_EMAIL, CONTACT_EMAIL_FORM } from "@/const";
 import { Link } from "wouter";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -59,6 +59,13 @@ export default function Header() {
               <span>✉️</span>
               {CONTACT_EMAIL}
             </a>
+            <a
+              href={`mailto:${CONTACT_EMAIL_FORM}`}
+              className="hover:text-primary transition-colors font-medium flex items-center gap-2 hidden md:flex"
+            >
+              <span>📧</span>
+              {CONTACT_EMAIL_FORM}
+            </a>
           </div>
           <div className="hidden sm:flex gap-4">
             <a href="#" className="hover:text-primary transition-colors">
@@ -77,9 +84,13 @@ export default function Header() {
       {/* Main Navigation */}
       <nav className="container py-4 flex justify-between items-center">
         <Link href="/">
-          <a className="text-2xl font-black text-primary hover:text-primary/80 transition-colors flex items-center gap-2">
-            <span className="text-3xl">🏗️</span>
-            <span className="hidden sm:inline">{APP_TITLE}</span>
+          <a className="text-2xl font-black text-primary hover:text-primary/80 transition-colors flex items-center gap-3">
+            <img 
+              src="/gec-logo.png" 
+              alt="GEC Logo" 
+              className="h-12 w-auto dark:bg-white dark:p-2 dark:rounded-lg"
+            />
+            <span className="hidden sm:inline text-lg">{APP_TITLE}</span>
           </a>
         </Link>
 

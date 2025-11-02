@@ -46,8 +46,8 @@
 :root {
   --radius: 16px;
   
-  /* الألوان الأساسية - أزرق عصري جريء */
-  --primary: oklch(0.32 0.18 260);
+  /* الألوان الأساسية - أزرق غامق من شعار GEC الجديد */
+  --primary: #1a237e;
   --primary-foreground: oklch(1 0 0);
   
   /* الخلفيات */
@@ -70,8 +70,8 @@
   --muted: oklch(0.92 0.001 0);
   --muted-foreground: oklch(0.45 0.08 260);
   
-  /* الألوان البارزة - برتقالي جريء */
-  --accent: oklch(0.68 0.22 35);
+  /* الألوان البارزة - أزرق فاتح من الشعار */
+  --accent: #7986cb;
   --accent-foreground: oklch(1 0 0);
   
   /* الألوان الخطرة */
@@ -113,8 +113,7 @@
   --secondary: oklch(0.45 0.12 260);
   --secondary-foreground: oklch(0.98 0 0);
   --muted: oklch(0.22 0.01 260);
-  --muted-foreground: oklch(0.68 0.08 260);
-  --accent: oklch(0.78 0.25 35);
+  --muted-foreground: oklch(0.68 0.08 260);  --accent: #a5b4fc;
   --accent-foreground: oklch(0.1 0.01 260);
   --border: oklch(0.22 0.01 260);
   --input: oklch(0.18 0.01 260);

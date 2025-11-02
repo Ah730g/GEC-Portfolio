@@ -1,15 +1,28 @@
 export { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 
-export const APP_TITLE = import.meta.env.VITE_APP_TITLE || "درر النفائس للاستشارات الهندسية";
+export const APP_TITLE = import.meta.env.VITE_APP_TITLE || "مكتب غازي محمد عباس للاستشارات الهندسية";
 
 export const APP_LOGO =
   import.meta.env.VITE_APP_LOGO ||
-  "https://placehold.co/128x128/E1E7EF/1F2937?text=Logo";
+  "/logo.webp";
 
 // Contact Information
-export const CONTACT_PHONE = "+966560655587";
-export const CONTACT_EMAIL = "info@duralnafis.com";
-export const CONTACT_HOURS = "متاح 24/7";
+export const CONTACT_PHONE = "0555720166";
+export const CONTACT_PHONE_2 = "0555877142";
+export const CONTACT_PHONE_3 = "0530063867";
+export const CONTACT_LANDLINE = "0173236401";
+export const CONTACT_EMAIL = "ghazia119@gmail.com";
+export const CONTACT_EMAIL_2 = "alabbasi13@hotmail.com";
+export const CONTACT_EMAIL_3 = "Ahm32336@gmail.com";
+export const CONTACT_EMAIL_FORM = "alhattmiabdlrahman435@gmail.com";
+export const CONTACT_HOURS = "السبت - الخميس: 9:00 - 17:00";
+
+// Phone contacts with names
+export const PHONE_CONTACTS = [
+  { name: "م/ أحمد عباس", phone: "0555720166" },
+  { name: "م/ محمد عباس", phone: "0555877142" },
+  { name: "م/ تركي عباس", phone: "0530063867" },
+];
 
 // Navigation Menu
 export const NAV_MENU = [
@@ -116,10 +129,12 @@ export const COMPANY_VALUES = [
 
 // Company Info
 export const COMPANY_INFO = {
-  name: "الدر النفيس للاستشارات الهندسية",
-  description: "شركة هندسية سعودية معتمده، متخصصه في تقديم حلول تصميم واستشارات هندسية شاملة",
+  name: "مكتب غازي محمد عباس للاستشارات الهندسية",
+  shortName: "GEC",
+  description: "مكتب هندسي سعودي معتمد، متخصص في تقديم حلول تصميم واستشارات هندسية شاملة ومتطورة",
   vision: "أن نكون من الرواد في مجال الاستشارات الهندسية في المملكة العربية السعودية",
   mission: "نصنع الفارق عبر تقديم خدمات هندسية متقدمة",
+  yearsOfExperience: "25+",
 };
 
 // Generate login URL at runtime so redirect URI reflects the current origin.
@@ -137,3 +152,4 @@ export const getLoginUrl = () => {
 
   return url.toString();
 };
+
