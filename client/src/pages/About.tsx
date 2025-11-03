@@ -1,7 +1,8 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import ButtonLink from "@/components/ButtonLink";
+import HeroSection from "@/components/HeroSection";
+import PageLayout from "@/components/PageLayout";
+import SectionHeading from "@/components/SectionHeading";
 import { ArrowRight, Award, Users, Target, Lightbulb } from "lucide-react";
-import { Link } from "wouter";
 
 export default function About() {
   const values = [
@@ -61,21 +62,15 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden pt-20 pb-16 sm:pt-32 sm:pb-20 bg-gradient-to-br from-primary/10 to-accent/5">
-          <div className="container">
-            <h1 className="heading-modern text-primary mb-4">من نحن</h1>
-            <p className="text-xl text-foreground/70 max-w-2xl">
-              تعرف على شركة درر النفائس للاستشارات الهندسية
-            </p>
-          </div>
-        </section>
-
-        {/* About Section */}
+    <PageLayout
+      hero={
+        <HeroSection
+          title="من نحن"
+          description="تعرف على شركة درر النفائس للاستشارات الهندسية"
+          eyebrow="قصتنا"
+        />
+      }
+    >
         <section className="section-modern">
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -134,14 +129,11 @@ export default function About() {
 
         {/* Values Section */}
         <section className="section-modern bg-gradient-to-br from-primary/5 to-accent/5">
-          <div className="container">
-            <div className="text-center mb-16">
-              <h2 className="heading-modern text-primary mb-4">قيمنا الأساسية</h2>
-              <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-                نبني عملنا على أساس قيم راسخة تعكس التزامنا تجاه عملائنا
-              </p>
-            </div>
-
+          <div className="container space-y-16">
+            <SectionHeading
+              title="قيمنا الأساسية"
+              subtitle="نبني عملنا على أساس قيم راسخة تعكس التزامنا تجاه عملائنا"
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {values.map((value, index) => (
                 <div key={index} className="card-modern p-8 text-center">
@@ -159,13 +151,10 @@ export default function About() {
         {/* Why Choose Us */}
         <section className="section-modern">
           <div className="container">
-            <div className="text-center mb-16">
-              <h2 className="heading-modern text-primary mb-4">لماذا تختار درر النفائس؟</h2>
-              <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-                نقدم مزايا تنافسية تجعلنا الخيار الأفضل لمشاريعك
-              </p>
-            </div>
-
+            <SectionHeading
+              title="لماذا تختار درر النفائس؟"
+              subtitle="نقدم مزايا تنافسية تجعلنا الخيار الأفضل لمشاريعك"
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {whyChooseUs.map((item, index) => (
                 <div key={index} className="card-modern p-8">
@@ -207,23 +196,19 @@ export default function About() {
         {/* CTA Section */}
         <section className="section-modern">
           <div className="container text-center">
-            <h2 className="heading-modern text-primary mb-6">
-              هل تريد العمل معنا؟
-            </h2>
-            <p className="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">
-              تواصل معنا اليوم واحصل على استشارة مجانية من فريقنا المتخصص
-            </p>
-            <Link href="/contact">
-              <button className="btn-modern bg-primary text-primary-foreground hover:bg-primary/90">
+            <SectionHeading
+              alignment="center"
+              title="هل تريد العمل معنا؟"
+              subtitle="تواصل معنا اليوم واحصل على استشارة مجانية من فريقنا المتخصص"
+            />
+            <div className="mt-6 flex justify-center">
+              <ButtonLink href="/contact" className="bg-primary text-primary-foreground hover:bg-primary/90">
                 تواصل معنا
                 <ArrowRight className="inline-block ml-2 w-5 h-5" />
-              </button>
-            </Link>
+              </ButtonLink>
+            </div>
           </div>
         </section>
-      </main>
-
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }

@@ -158,6 +158,26 @@
   .container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+  
+  .skip-link {
+    position: absolute;
+    top: -200px;
+    right: 1rem;
+    z-index: 9999;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    font-weight: 700;
+    box-shadow: 0 20px 40px rgba(50, 100, 200, 0.25);
+    transition: top 0.2s ease, opacity 0.2s ease;
+    opacity: 0;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+    opacity: 1;
+  }
 }
 
 @layer components {
@@ -269,4 +289,3 @@
     @apply h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full;
   }
 }
-

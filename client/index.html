@@ -6,18 +6,47 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1"
     />
-    <link rel="icon" type="image/png" href="%VITE_APP_LOGO%" />
-    <link rel="apple-touch-icon" href="%VITE_APP_LOGO%" />
-    <title>%VITE_APP_TITLE%</title>
+    <link id="app-favicon" rel="icon" type="image/png" href="/favicon.svg" />
+    <link id="app-apple-icon" rel="apple-touch-icon" href="/favicon.svg" />
+    <title>Duralnafis</title>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"
-    ></script>
+    <script type="module">
+      const {
+        VITE_APP_LOGO,
+        VITE_APP_TITLE,
+        VITE_ANALYTICS_ENDPOINT,
+        VITE_ANALYTICS_WEBSITE_ID,
+      } = import.meta.env;
+
+      const iconHref = VITE_APP_LOGO || "/favicon.svg";
+      const setAttr = (selector, attribute, value) => {
+        const element = document.querySelector(selector);
+        if (!element) return;
+        if (value) {
+          element.setAttribute(attribute, value);
+        } else {
+          element.removeAttribute(attribute);
+        }
+      };
+
+      if (VITE_APP_TITLE) {
+        document.title = VITE_APP_TITLE;
+      }
+
+      setAttr("#app-favicon", "href", iconHref);
+      setAttr("#app-apple-icon", "href", iconHref);
+
+      if (VITE_ANALYTICS_ENDPOINT && VITE_ANALYTICS_WEBSITE_ID) {
+        const analyticsScript = document.createElement("script");
+        analyticsScript.defer = true;
+        analyticsScript.src = `${VITE_ANALYTICS_ENDPOINT.replace(/\/+$/, "")}/umami`;
+        analyticsScript.dataset.websiteId = VITE_ANALYTICS_WEBSITE_ID;
+        document.body.appendChild(analyticsScript);
+      }
+    </script>
   </body>
 </html>

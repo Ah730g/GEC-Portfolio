@@ -1,18 +1,28 @@
 import { NAV_MENU, APP_TITLE, APP_LOGO, CONTACT_PHONE, CONTACT_EMAIL, CONTACT_EMAIL_FORM } from "@/const";
 import { Link } from "wouter";
 import { Menu, X, Moon, Sun } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved) return saved === "dark";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
+  const [isDark, setIsDark] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    const saved = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setIsDark(saved ? saved === "dark" : prefersDark);
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated || typeof document === "undefined") {
+      return;
+    }
     const root = document.documentElement;
     if (isDark) {
       root.classList.add("dark");
@@ -21,7 +31,7 @@ export default function Header() {
       root.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
-  }, [isDark]);
+  }, [hydrated, isDark]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +41,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleDarkMode = () => setIsDark(!isDark);
+  const toggleDarkMode = () => setIsDark((prev) => !prev);
 
   return (
     <header
@@ -168,4 +178,3 @@ export default function Header() {
     </header>
   );
 }
-

@@ -1,7 +1,8 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import ButtonLink from "@/components/ButtonLink";
+import HeroSection from "@/components/HeroSection";
+import PageLayout from "@/components/PageLayout";
+import SectionHeading from "@/components/SectionHeading";
 import { ArrowRight } from "lucide-react";
-import { Link } from "wouter";
 
 export default function Services() {
   const services = [
@@ -97,26 +98,15 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background overflow-hidden">
-      <Header />
-
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden pt-20 pb-16 sm:pt-40 sm:pb-24">
-          <div className="absolute inset-0">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
-          </div>
-          <div className="container relative z-10">
-            <h1 className="heading-modern text-gradient mb-4">خدماتنا الهندسية</h1>
-            <div className="divider-accent w-20 h-1 mb-6" />
-            <p className="text-2xl text-foreground/70 max-w-2xl font-medium">
-              مجموعة شاملة من الخدمات الهندسية المتكاملة والمتخصصة
-            </p>
-          </div>
-        </section>
-
-        {/* Services Grid */}
+    <PageLayout
+      hero={
+        <HeroSection
+          title="خدماتنا الهندسية"
+          description="مجموعة شاملة من الخدمات الهندسية المتكاملة والمتخصصة"
+          eyebrow="خدمات متكاملة"
+        />
+      }
+    >
         <section className="section-modern">
           <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -145,15 +135,11 @@ export default function Services() {
 
         {/* Process Section */}
         <section className="section-modern bg-gradient-to-b from-primary/5 via-accent/5 to-primary/5">
-          <div className="container">
-            <div className="text-center mb-20">
-              <h2 className="heading-modern text-primary mb-4">عملية الخدمة</h2>
-              <div className="divider-accent w-20 h-1 mx-auto mb-6" />
-              <p className="text-xl text-foreground/70 max-w-2xl mx-auto font-medium">
-                نتبع منهجية واضحة وفعالة في تقديم خدماتنا
-              </p>
-            </div>
-
+          <div className="container space-y-16">
+            <SectionHeading
+              title="عملية الخدمة"
+              subtitle="نتبع منهجية واضحة وفعالة في تقديم خدماتنا"
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {processSteps.map((step, index) => (
                 <div
@@ -187,17 +173,17 @@ export default function Services() {
             <p className="text-2xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
               تواصل معنا اليوم واحصل على عرض سعر مخصص لمشروعك
             </p>
-            <Link href="/contact">
-              <button className="btn-modern bg-white text-primary hover:bg-white/90 hover:shadow-2xl font-black">
+            <div className="flex justify-center">
+              <ButtonLink
+                href="/contact"
+                className="bg-white text-primary hover:bg-white/90 hover:shadow-2xl font-black"
+              >
                 احصل على عرض سعر
                 <ArrowRight className="inline-block ml-2 w-5 h-5" />
-              </button>
-            </Link>
+              </ButtonLink>
+            </div>
           </div>
         </section>
-      </main>
-
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }
