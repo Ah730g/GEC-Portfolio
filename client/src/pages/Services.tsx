@@ -18,7 +18,9 @@ import {
   FileCog,
 } from "lucide-react";
 import { lazy, Suspense } from "react";
-const ServicesEnhancements = lazy(() => import("@/components/ServicesEnhancements"));
+const ServicesEnhancements = lazy(
+  () => import("@/components/ServicesEnhancements")
+);
 
 type ServiceBlock = {
   heading: string;
@@ -40,79 +42,6 @@ type ServiceSection = {
 };
 
 const sections: ServiceSection[] = [
-  {
-    id: "om",
-    title: "أعمال التشغيل والصيانة",
-    summary:
-      "تشغيل وصيانة المباني والمرافق وإدارة الأنظمة الكهربائية والميكانيكية والمياه والصرف الصحي بخدمات وقائية وتصحيحية وطوارئ.",
-    icon: <Wrench className="w-8 h-8" aria-hidden />,
-    image: "/photoApp/hero-building.jpg",
-    imageAlt: "أعمال تشغيل وصيانة للمباني والمرافق",
-    blocks: [
-      {
-        heading: "نطاق الأعمال",
-        items: [
-          "تشغيل وصيانة المباني والمرافق العامة والخاصة",
-          "إدارة وتشغيل أنظمة الكهرباء والميكانيكا والتبريد والتكييف",
-          "صيانة وإصلاح الأنظمة الكهربائية والميكانيكية",
-          "تشغيل وصيانة أنظمة المياه والصرف الصحي",
-          "إدارة وتشغيل مرافق عامة مثل المدارس والمستشفيات والحدائق",
-          "خدمات الصيانة الوقائية والتصحيحية",
-          "خدمات الطوارئ والصيانة الفورية",
-        ],
-      },
-      {
-        heading: "الأهداف",
-        items: [
-          "ضمان تشغيل آمن وكفء للمرافق",
-          "تحسين كفاءة استخدام الموارد",
-          "تقليل التكاليف التشغيلية",
-          "تقديم خدمات عالية الجودة",
-        ],
-      },
-      {
-        heading: "خدمات إضافية",
-        items: ["إدارة المشاريع", "استشارات فنية"],
-      },
-    ],
-  },
-  {
-    id: "roads",
-    title: "صيانة الطرق",
-    summary:
-      "مجموعة أنشطة للحفاظ على الطرق آمنة وسالكة تشمل الرصف والعلامات والإنارة والصرف والجسور والتنظيف.",
-    icon: <RouteIcon className="w-8 h-8" aria-hidden />,
-    image: "/photoApp/architectural-plan.jpg",
-    imageAlt: "صيانة الطرق والعناصر المرتبطة",
-    intro: [
-      "صيانة الرصف: إصلاح الشقوق والثقوب وتجديد طبقات الرصف",
-      "صيانة العلامات المرورية: تنظيف وتجديد العلامات",
-      "صيانة الإنارة: إصلاح وصيانة إنارة الطرق",
-      "صيانة الصرف: تنظيف وصيانة أنظمة تصريف مياه الأمطار",
-      "صيانة الجسور والأنفاق: فحص وصيانة الهياكل",
-      "تنظيف الطرق: إزالة الأوساخ والحصى والحطام",
-    ],
-    blocks: [
-      {
-        heading: "الأهداف",
-        items: [
-          "تحسين السلامة المرورية",
-          "تقليل الحوادث المرورية",
-          "تحسين جودة الطرق",
-          "زيادة عمر الطرق",
-          "تقليل تكاليف الصيانة على المدى الطويل",
-        ],
-      },
-      {
-        heading: "الأنواع",
-        items: [
-          "صيانة وقائية: بانتظام لمنع الأضرار",
-          "صيانة تصحيحية: لإصلاح الأضرار القائمة",
-          "صيانة طارئة: للحوادث والكوارث الطبيعية",
-        ],
-      },
-    ],
-  },
   {
     id: "buildings",
     title: "أعمال المباني",
@@ -193,6 +122,79 @@ const sections: ServiceSection[] = [
     ],
   },
   {
+    id: "om",
+    title: "أعمال التشغيل والصيانة",
+    summary:
+      "تشغيل وصيانة المباني والمرافق وإدارة الأنظمة الكهربائية والميكانيكية والمياه والصرف الصحي بخدمات وقائية وتصحيحية وطوارئ.",
+    icon: <Wrench className="w-8 h-8" aria-hidden />,
+    image: "/photoApp/hero-building.jpg",
+    imageAlt: "أعمال تشغيل وصيانة للمباني والمرافق",
+    blocks: [
+      {
+        heading: "نطاق الأعمال",
+        items: [
+          "تشغيل وصيانة المباني والمرافق العامة والخاصة",
+          "إدارة وتشغيل أنظمة الكهرباء والميكانيكا والتبريد والتكييف",
+          "صيانة وإصلاح الأنظمة الكهربائية والميكانيكية",
+          "تشغيل وصيانة أنظمة المياه والصرف الصحي",
+          "إدارة وتشغيل مرافق عامة مثل المدارس والمستشفيات والحدائق",
+          "خدمات الصيانة الوقائية والتصحيحية",
+          "خدمات الطوارئ والصيانة الفورية",
+        ],
+      },
+      {
+        heading: "الأهداف",
+        items: [
+          "ضمان تشغيل آمن وكفء للمرافق",
+          "تحسين كفاءة استخدام الموارد",
+          "تقليل التكاليف التشغيلية",
+          "تقديم خدمات عالية الجودة",
+        ],
+      },
+      {
+        heading: "خدمات إضافية",
+        items: ["إدارة المشاريع", "استشارات فنية"],
+      },
+    ],
+  },
+  {
+    id: "roads",
+    title: "صيانة الطرق",
+    summary:
+      "مجموعة أنشطة للحفاظ على الطرق آمنة وسالكة تشمل الرصف والعلامات والإنارة والصرف والجسور والتنظيف.",
+    icon: <RouteIcon className="w-8 h-8" aria-hidden />,
+    image: "/photoApp/architectural-plan.jpg",
+    imageAlt: "صيانة الطرق والعناصر المرتبطة",
+    intro: [
+      "صيانة الرصف: إصلاح الشقوق والثقوب وتجديد طبقات الرصف",
+      "صيانة العلامات المرورية: تنظيف وتجديد العلامات",
+      "صيانة الإنارة: إصلاح وصيانة إنارة الطرق",
+      "صيانة الصرف: تنظيف وصيانة أنظمة تصريف مياه الأمطار",
+      "صيانة الجسور والأنفاق: فحص وصيانة الهياكل",
+      "تنظيف الطرق: إزالة الأوساخ والحصى والحطام",
+    ],
+    blocks: [
+      {
+        heading: "الأهداف",
+        items: [
+          "تحسين السلامة المرورية",
+          "تقليل الحوادث المرورية",
+          "تحسين جودة الطرق",
+          "زيادة عمر الطرق",
+          "تقليل تكاليف الصيانة على المدى الطويل",
+        ],
+      },
+      {
+        heading: "الأنواع",
+        items: [
+          "صيانة وقائية: بانتظام لمنع الأضرار",
+          "صيانة تصحيحية: لإصلاح الأضرار القائمة",
+          "صيانة طارئة: للحوادث والكوارث الطبيعية",
+        ],
+      },
+    ],
+  },
+  {
     id: "turnkey",
     title: "تسليم مفتاح",
     summary:
@@ -264,9 +266,8 @@ const sections: ServiceSection[] = [
         heading: "الفوائد",
         items: [
           "راحة البال للمالك",
-          "ضمان الجودة والضمان",
+          "ضمان الجودة",
           "توفير الوقت والمال",
-          "تقليل النزاعات والمشاكل",
           "زيادة كفاءة العمل",
         ],
       },
@@ -280,7 +281,7 @@ export default function Services() {
 
   const sectionIndex = useMemo(() => {
     const map = new Map<string, ServiceSection>();
-    sections.forEach((s) => map.set(s.id, s));
+    sections.forEach(s => map.set(s.id, s));
     return map;
   }, []);
 
@@ -310,8 +311,8 @@ export default function Services() {
     <PageLayout
       hero={
         <HeroSection
-          title="خدمات التشغيل والصيانة"
-          description="نُقدّم حزمة متكاملة تغطي تشغيل وصيانة المرافق والطرق والمباني والتشطيبات والمشاريع بنظام تسليم مفتاح، مع التزام كامل بمعايير الجودة وتجربة المستخدم."
+          title="خدمات هندسية متكاملة"
+          description="نقدم حلولًا شاملة في أعمال المباني، التشطيبات، التشغيل والصيانة، صيانة الطرق، وتسليم المشاريع وفق أعلى المعايير الهندسية."
           eyebrow="خدمات متخصصة"
           alignment="center"
         />
@@ -327,7 +328,7 @@ export default function Services() {
             className="flex gap-3 overflow-x-auto pb-2 justify-center items-center"
             role="list"
           >
-            {sections.map((s) => (
+            {sections.map(s => (
               <a
                 key={s.id}
                 href={`#${s.id}`}
@@ -352,7 +353,9 @@ export default function Services() {
               className={`card-modern p-8 md:p-10 scroll-mt-28 ${
                 activeId === s.id ? "ring-2 ring-primary/40" : ""
               }`}
-              style={{ animation: `slideInUp 0.6s ease-out ${idx * 0.06}s both` }}
+              style={{
+                animation: `slideInUp 0.6s ease-out ${idx * 0.06}s both`,
+              }}
             >
               <header className="mb-6 flex items-center gap-3">
                 <span
@@ -379,7 +382,7 @@ export default function Services() {
                     المفهوم والأنشطة
                   </h3>
                   <ul className="list-disc pr-6 space-y-2 text-foreground/80">
-                    {s.intro.map((item) => (
+                    {s.intro.map(item => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
@@ -391,7 +394,7 @@ export default function Services() {
                 className="border-t"
                 value={openMap[s.id] || []}
                 onValueChange={(vals: string[]) =>
-                  setOpenMap((prev) => ({ ...prev, [s.id]: vals }))
+                  setOpenMap(prev => ({ ...prev, [s.id]: vals }))
                 }
               >
                 {s.blocks.map((block, i) => (
@@ -401,7 +404,7 @@ export default function Services() {
                     </AccordionTrigger>
                     <AccordionContent>
                       <ul className="list-disc pr-6 space-y-2 text-foreground/80">
-                        {block.items.map((it) => (
+                        {block.items.map(it => (
                           <li key={it}>{it}</li>
                         ))}
                       </ul>
@@ -441,10 +444,11 @@ export default function Services() {
         </div>
         <div className="container relative z-10 text-center">
           <h2 className="text-5xl sm:text-6xl font-black mb-6 leading-tight">
-            جاهز للبدء؟
+            ابدأ الآن{" "}
           </h2>
           <p className="text-2xl text-white/90 mb-8 max-w-2xl mx-auto font-medium">
-            تواصل معنا الآن للحصول على عرض مُفصّل وخطة تشغيل وصيانة تناسب احتياجك
+            تواصل معنا الآن للحصول على عرض مُفصّل وخطة تشغيل وصيانة تناسب
+            احتياجك
           </p>
           <div className="flex justify-center">
             <ButtonLink

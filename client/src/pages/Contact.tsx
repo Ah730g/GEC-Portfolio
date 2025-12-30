@@ -14,8 +14,16 @@ import {
 import { BsTelephoneFill, BsEnvelopeFill, BsClockFill } from "react-icons/bs";
 import { MdPhone, MdEmail } from "react-icons/md";
 import { IoMdSend } from "react-icons/io";
-import { User, Mail as MailIcon, Phone as PhoneIcon, FileText, MessageSquare } from "lucide-react";
+import {
+  User,
+  Mail as MailIcon,
+  Phone as PhoneIcon,
+  FileText,
+  MessageSquare,
+} from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import BranchContactCard from "@/components/ui/LucidCard";
+import { Phone, Mail } from "lucide-react";
 
 type SubmitStatus = "idle" | "sending" | "success" | "error";
 
@@ -48,14 +56,12 @@ type FormFieldProps = {
 
 function FormField({ icon, children, className = "" }: FormFieldProps) {
   return (
-    <div className={`relative rounded-xl border border-gray-300 bg-white shadow-sm transition-all duration-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 dark:border-gray-600 dark:bg-gray-800 ${className}`}>
-      <div className="flex items-start">
-        <div className="flex items-center px-3 py-3 text-gray-500 dark:text-gray-400">
-          {icon}
-        </div>
-        <div className="flex-1 min-w-0">
-          {children}
-        </div>
+    <div
+      className={`relative rounded-xl border border-gray-300 bg-white shadow-sm transition-all duration-300 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 dark:border-gray-600 dark:bg-gray-800 ${className}`}
+    >
+      <div className="flex items-center gap-2 px-3 py-3">
+        <div className="text-gray-500 dark:text-gray-400">{icon}</div>
+        <div className="flex-1">{children}</div>
       </div>
     </div>
   );
@@ -72,7 +78,8 @@ const INITIAL_FORM_DATA: ContactFormData = {
 const FAQS: FAQ[] = [
   {
     question: "كم تستغرق مدة تنفيذ المشروع؟",
-    answer: "تختلف المدة حسب حجم ونوع المشروع، لكننا نلتزم بالجداول الزمنية المتفق عليها.",
+    answer:
+      "تختلف المدة حسب حجم ونوع المشروع، لكننا نلتزم بالجداول الزمنية المتفق عليها.",
   },
   {
     question: "هل تقدمون استشارات مجانية؟",
@@ -84,33 +91,44 @@ const FAQS: FAQ[] = [
   },
   {
     question: "كيف يمكنني الحصول على عرض سعر؟",
-    answer: "يمكنك التواصل معنا عبر النموذج أو الهاتف، وسنقوم بإعداد عرض سعر مفصل.",
+    answer:
+      "يمكنك التواصل معنا عبر النموذج أو الهاتف، وسنقوم بإعداد عرض سعر مفصل.",
   },
 ];
 
 const OFFICE_LOCATIONS: OfficeLocation[] = [
   {
     title: "مكتب غازي محمد عباس للاستشارات الهندسية – جازان",
-    mapUrl: "https://maps.app.goo.gl/Rkod5qAwKpH7ZQJz5",
-    coords: { lat: 16.8905702, lng: 42.5631806 },
-    description: undefined
+    mapUrl:
+      "https://www.google.com/maps/place/%D9%85%D9%83%D8%AA%D8%A8+%D8%BA%D8%A7%D8%B2%D9%8A+%D9%85%D8%AD%D9%85%D8%AF+%D8%B9%D8%A8%D8%A7%D8%B3+%D9%84%D9%84%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A7%D8%AA+%D8%A7%D9%84%D9%87%D9%86%D8%AF%D8%B3%D9%8A%D8%A9+.+%D8%AC%D8%A7%D8%B2%D8%A7%D9%86%E2%80%AD/@16.8905702,42.5631806,17z/data=!4m14!1m7!3m6!1s0x1607e297d798fecf:0xf18996bb06820ca5!2z2YXZg9iq2Kgg2LrYp9iy2Yog2YXYrdmF2K8g2LnYqNin2LMg2YTZhNin2LPYqti02KfYsdin2Kog2KfZhNmH2YbYr9iz2YrYqSAuINis2KfYstin2YY!8m2!3d16.8905702!4d42.5631806!16s%2Fg%2F11hchx81_0!3m5!1s0x1607e297d798fecf:0xf18996bb06820ca5!8m2!3d16.8905702!4d42.5631806!16s%2Fg%2F11hchx81_0?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D",
+    coords: { lat: 16.890672860062637, lng: 42.56303039629772 },
+    description: undefined,
   },
   {
-    title: "مكتب غازي محمد عباس للاستشارات الهندسية فرع العارضة",
-    mapUrl: "https://maps.app.goo.gl/Zr6scA4TNyPjPbu26",
-    coords: { lat: 17.03381, lng: 43.0574654 },
-    description: undefined
+    title: "مكتب غازي محمد عباس للاستشارات الهندسية - العارضة",
+    mapUrl:
+      "https://www.google.com/maps/place/%D9%85%D9%83%D8%AA%D8%A8+%D8%BA%D8%A7%D8%B2%D9%8A+%D9%85%D8%AD%D9%85%D8%AF+%D8%B9%D8%A8%D8%A7%D8%B3+%D9%84%D9%84%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A7%D8%AA+%D8%A7%D9%84%D9%87%D9%86%D8%AF%D8%B3%D9%8A%D8%A9+%D9%81%D8%B1%D8%B9+%D8%A7%D9%84%D8%B9%D8%A7%D8%B1%D8%B6%D9%87%E2%80%AD/@17.03381,43.0574654,17z/data=!3m1!4b1!4m6!3m5!1s0x15fd7b957e0ad7c9:0x108b09af8952d06e!8m2!3d17.03381!4d43.0574654!16s%2Fg%2F11ny2rd43f?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D",
+    coords: { lat: 17.03405619625267, lng: 43.057486857671755 },
+    description: undefined,
   },
   {
-    title: "مكتب غازي محمد عباس للاستشارات الهندسية – أبها",
-    mapUrl: "https://maps.app.goo.gl/cJMbmpTkdoLcwp4p6",
-    coords: { lat: 18.2201569, lng: 42.5067345 },
-    description: undefined
+    title: "مكتب غازي محمد عباس للاستشارات الهندسية – الدمام ",
+    mapUrl:
+      "https://www.google.com/maps/place/%D9%85%D9%83%D8%AA%D8%A8+%D8%BA%D8%A7%D8%B2%D9%8A+%D9%85%D8%AD%D9%85%D8%AF+%D8%B9%D8%A8%D8%A7%D8%B3+%D9%84%D9%84%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A7%D8%AA+%D8%A7%D9%84%D9%87%D9%86%D8%AF%D8%B3%D9%8A%D8%A9+%7C+GEC%E2%80%AD/@26.3627601,50.1974268,17z/data=!3m1!4b1!4m6!3m5!1s0x3e49ef51565077af:0x4c5b36630dd1fe0e!8m2!3d26.3627601!4d50.1974268!16s%2Fg%2F11mm77hk0w?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D",
+    coords: { lat: 26.36293, lng: 50.19744 },
+    description: undefined,
+  },
+  {
+    title: "مكتب غازي محمد عباس للاستشارات الهندسية – خميس مشيط ",
+    mapUrl:
+      "https://www.google.com/maps/place/%D9%85%D9%83%D8%AA%D8%A8+%D8%BA%D8%A7%D8%B2%D9%8A+%D9%85%D8%AD%D9%85%D8%AF+%D8%B9%D8%A8%D8%A7%D8%B3+%D8%A7%D9%84%D8%A5%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A7%D8%AA+%D8%A7%D9%84%D9%87%D9%86%D8%AF%D8%B3%D9%8A%D8%A9%E2%80%AD/@18.3009375,42.7314375,17z/data=!3m1!4b1!4m6!3m5!1s0x15fb5a20b7437477:0xeb76dc2234bc3baa!8m2!3d18.3009375!4d42.7314375!16s%2Fg%2F11f_j93wjq?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D",
+    coords: { lat: 18.30116, lng: 42.73141 },
+    description: undefined,
   },
 ];
 
 const CONTACT_HIGHLIGHTS: ContactHighlight[] = [
-  ...PHONE_CONTACTS.map((contact) => ({
+  ...PHONE_CONTACTS.map(contact => ({
     title: contact.name,
     details: contact.phone,
     href: `tel:${contact.phone}`,
@@ -160,18 +178,49 @@ const CONTACT_HIGHLIGHTS: ContactHighlight[] = [
   },
 ];
 
+// Branch Contact Info
+export const branchDemoData = [
+  {
+    branchName: "فرع جازان",
+    phone: "+966 55 572 0166",
+    email: "ahm32336@gmail.com",
+    workingHours: "8:00 - 20:00",
+  },
+  {
+    branchName: "فرع العارضة",
+    phone: "+966 55 572 0166",
+    email: "ahm32336@gmail.com",
+    workingHours: "8:00 - 20:00",
+  },
+  {
+    branchName: "فرع الدمام",
+    phone: "+966 53 006 3867",
+    email: "Trkbis72@gmail.com",
+    workingHours: "8:00 - 20:00",
+  },
+  {
+    branchName: "فرع خميس مشيط",
+    phone: "+966 54 123 2193",
+    email: "ghazia119@gmail.com",
+    workingHours: "8:00 - 20:00",
+  },
+];
 export default function Contact() {
-  const [formData, setFormData] = useState<ContactFormData>({ ...INITIAL_FORM_DATA });
+  const [formData, setFormData] = useState<ContactFormData>({
+    ...INITIAL_FORM_DATA,
+  });
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const resetTimeoutRef = useRef<number | null>(null);
 
   const resetFormData = () => setFormData({ ...INITIAL_FORM_DATA });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const scheduleReset = () => {
@@ -192,7 +241,7 @@ export default function Contact() {
 
     try {
       const form = e.currentTarget;
-      const response = await fetch(`https://formsubmit.co/${CONTACT_EMAIL_FORM}`, {
+      const response = await fetch(`https://formsubmit.co/${CONTACT_EMAIL}`, {
         method: "POST",
         body: new FormData(form),
       });
@@ -231,7 +280,9 @@ export default function Contact() {
           <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)]">
             <div className="rounded-3xl border border-primary/20 bg-background/80 p-6 shadow-xl backdrop-blur">
               <p className="text-lg text-foreground/80 leading-relaxed">
-                سواء كنت تبحث عن استشارة سريعة أو ترغب في بدء مشروع متكامل، فريقنا متواجد لخدمتك عبر القنوات الرقمية والهاتفية، مع التزام كامل بالاستجابة السريعة.
+                سواء كنت تبحث عن استشارة سريعة أو ترغب في بدء مشروع متكامل،
+                فريقنا متواجد لخدمتك عبر القنوات الرقمية والهاتفية، مع التزام
+                كامل بالاستجابة السريعة.
               </p>
             </div>
             <div className="relative hidden overflow-hidden rounded-3xl border border-primary/20 bg-primary/10 shadow-2xl lg:block">
@@ -267,7 +318,11 @@ export default function Contact() {
                 className="mb-8"
               />
               <form onSubmit={handleSubmit} className="space-y-6">
-                <input type="hidden" name="_subject" value="رسالة جديدة من موقع GEC" />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="رسالة جديدة من موقع GEC"
+                />
                 <input
                   type="hidden"
                   name="_autoresponse"
@@ -277,7 +332,10 @@ export default function Contact() {
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-2">
-                    <label className="block font-semibold text-foreground dark:text-white" htmlFor="contact-name">
+                    <label
+                      className="block font-semibold text-foreground dark:text-white"
+                      htmlFor="contact-name"
+                    >
                       الاسم *
                     </label>
                     <FormField icon={<User className="h-5 w-5" />}>
@@ -294,7 +352,10 @@ export default function Contact() {
                     </FormField>
                   </div>
                   <div className="space-y-2">
-                    <label className="block font-semibold text-foreground dark:text-white" htmlFor="contact-email">
+                    <label
+                      className="block font-semibold text-foreground dark:text-white"
+                      htmlFor="contact-email"
+                    >
                       البريد الإلكتروني *
                     </label>
                     <FormField icon={<MailIcon className="h-5 w-5" />}>
@@ -315,25 +376,31 @@ export default function Contact() {
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-2">
-                    <label className="block font-semibold text-foreground dark:text-white" htmlFor="contact-phone">
+                    <label
+                      className="block font-semibold text-foreground dark:text-white"
+                      htmlFor="contact-email"
+                    >
                       رقم الهاتف *
                     </label>
                     <FormField icon={<PhoneIcon className="h-5 w-5" />}>
                       <input
-                        id="contact-phone"
-                        type="tel"
+                        id="contact-email"
+                        type="phone"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        autoComplete="tel"
-                        placeholder="رقم هاتفك"
+                        autoComplete="phone"
+                        placeholder="رقم الهاتف"
                         className="w-full border-0 bg-transparent py-3 px-0 text-foreground placeholder:text-gray-500 focus:outline-none focus:ring-0 dark:text-white dark:placeholder:text-gray-400"
                       />
                     </FormField>
                   </div>
                   <div className="space-y-2">
-                    <label className="block font-semibold text-foreground dark:text-white" htmlFor="contact-subject">
+                    <label
+                      className="block font-semibold text-foreground dark:text-white"
+                      htmlFor="contact-subject"
+                    >
                       الموضوع *
                     </label>
                     <FormField icon={<FileText className="h-5 w-5" />}>
@@ -343,18 +410,36 @@ export default function Contact() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full border-0 bg-transparent py-3 px-0 text-foreground focus:outline-none focus:ring-0 dark:text-white"
+                        className="selection w-full border-0 bg-transparent py-3 px-0 text-foreground focus:outline-none focus:ring-0 dark:text-white"
                       >
                         <option value="">اختر الخدمة</option>
-                        <option value="الأنشطة الهندسية">الأنشطة الهندسية</option>
-                        <option value="الأعمال المساحية">الأعمال المساحية</option>
-                        <option value="التصميم المعماري الخارجي">التصميم المعماري الخارجي</option>
-                        <option value="التصميم المعماري الداخلي">التصميم المعماري الداخلي</option>
-                        <option value="الإشراف على المشاريع">الإشراف على المشاريع</option>
-                        <option value="الدراسات الهندسية">الدراسات الهندسية</option>
-                        <option value="الدراسات الجيولوجية والهيدرولوجية">الدراسات الجيولوجية والهيدرولوجية</option>
-                        <option value="التقارير الهندسية">التقارير الهندسية</option>
-                        <option value="التصاميم الكهروميكانيكية">التصاميم الكهروميكانيكية</option>
+                        <option value="الأنشطة الهندسية">
+                          الأنشطة الهندسية
+                        </option>
+                        <option value="الأعمال المساحية">
+                          الأعمال المساحية
+                        </option>
+                        <option value="التصميم المعماري الخارجي">
+                          التصميم المعماري الخارجي
+                        </option>
+                        <option value="التصميم المعماري الداخلي">
+                          التصميم المعماري الداخلي
+                        </option>
+                        <option value="الإشراف على المشاريع">
+                          الإشراف على المشاريع
+                        </option>
+                        <option value="الدراسات الهندسية">
+                          الدراسات الهندسية
+                        </option>
+                        <option value="الدراسات الجيولوجية والهيدرولوجية">
+                          الدراسات الجيولوجية والهيدرولوجية
+                        </option>
+                        <option value="التقارير الهندسية">
+                          التقارير الهندسية
+                        </option>
+                        <option value="التصاميم الكهروميكانيكية">
+                          التصاميم الكهروميكانيكية
+                        </option>
                         <option value="تصاميم الكهرباء">تصاميم الكهرباء</option>
                         <option value="تصاميم السلامة">تصاميم السلامة</option>
                         <option value="استفسار عام">استفسار عام</option>
@@ -364,10 +449,13 @@ export default function Contact() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="block font-semibold text-foreground dark:text-white" htmlFor="contact-message">
+                  <label
+                    className="block font-semibold text-foreground dark:text-white"
+                    htmlFor="contact-message"
+                  >
                     الرسالة *
                   </label>
-                  <FormField 
+                  <FormField
                     icon={<MessageSquare className="h-5 w-5 mt-3" />}
                     className="min-h-[150px]"
                   >
@@ -433,7 +521,9 @@ export default function Contact() {
                     animation: `slideInUp 0.6s ease-out ${index * 0.12}s both`,
                   }}
                 >
-                  <h3 className="mb-2 text-lg font-bold text-primary">{faq.question}</h3>
+                  <h3 className="mb-2 text-lg font-bold text-primary">
+                    {faq.question}
+                  </h3>
                   <p className="text-foreground/70">{faq.answer}</p>
                 </div>
               ))}
@@ -448,42 +538,15 @@ export default function Contact() {
             title="وسائل التواصل"
             subtitle="اختر الطريقة الأنسب لك للتواصل مع فريقنا"
           />
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {CONTACT_HIGHLIGHTS.map((item, index) => (
-              <div
-                key={`${item.title}-${item.details}`}
-                className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/90 p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-2xl"
-                style={{
-                  animation: `slideInUp 0.6s ease-out ${index * 0.08}s both`,
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="relative flex flex-col gap-4">
-                  <div className="flex items-center justify-between">
-                    <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                      {item.highlight}
-                    </span>
-                    <div className="rounded-full bg-primary/10 p-2 text-primary">
-                      {item.icon}
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-primary">{item.title}</h3>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="mt-2 block break-words text-base font-semibold text-foreground/80 transition-colors group-hover:text-primary"
-                      >
-                        {item.details}
-                      </a>
-                    ) : (
-                      <p className="mt-2 text-base font-semibold text-foreground/80">
-                        {item.details}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {branchDemoData.map((item, index) => (
+              <BranchContactCard
+                key={index}
+                branchName={item.branchName}
+                phone={item.phone}
+                email={item.email}
+                workingHours={item.workingHours}
+              />
             ))}
           </div>
         </div>
@@ -498,7 +561,7 @@ export default function Contact() {
           <div className="overflow-hidden rounded-3xl border border-border/60 bg-card shadow-2xl">
             <OfficeMap offices={OFFICE_LOCATIONS} />
             <div className="flex flex-col gap-3 border-t border-border/70 bg-secondary/40 px-6 py-6 md:flex-row md:flex-wrap">
-              {OFFICE_LOCATIONS.map((office) => (
+              {OFFICE_LOCATIONS.map(office => (
                 <a
                   key={office.title}
                   href={office.mapUrl}
@@ -519,4 +582,4 @@ export default function Contact() {
       </section>
     </PageLayout>
   );
-} 
+}

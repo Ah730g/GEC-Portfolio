@@ -22,83 +22,97 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
+import EngineeringServices from "./EngineeringServices";
+import OurWorksCard from "@/components/ui/OurWorkCard";
+import PdfFlipbook from "@/components/PdfFlipbook";
 
 const engineeringServices = [
   {
     title: "الأنشطة الهندسية",
+    slug: "الأنشطة-الهندسية",
     description:
-      "باقة متكاملة من الأنشطة الهندسية تغطي مراحل المشروع من الفكرة إلى التنفيذ مع الالتزام بالكود السعودي للبناء",
+      "نقدم باقة متكاملة من الأنشطة الهندسية التي تغطي مختلف مراحل المشروع، من الفكرة إلى التنفيذ، بما يضمن تحقيق أعلى معايير الجودة والكفاءة.مع الالتزام بتطبيق الكود السعودي للبناء",
     image: "/photoApp/building-construction-new-skyscrapers.jpg",
     icon: <HardHat className="h-6 w-6 text-primary" />,
   },
   {
     title: "الأعمال المساحية",
+    slug: "الأعمال-المساحية",
     description:
-      "خدمات رفع مساحي دقيقة باستخدام تقنيات GPS ونظم GIS لإعداد الكروكيات والقرارات المساحية",
+      "نقدّم خدمات رفع مساحي دقيقة باستخدام أحدث تقنيات GPS ونظم GIS، لإعداد الكروكيات وإصدار القرارات المساحية لأغراض الرخص والتخطيط العمراني وتحديث الصكوك عبر منصات بلدي وسكني وإحكام.",
     image: "/photoApp/architectural-plan.jpg",
     icon: <DraftingCompass className="h-6 w-6 text-primary" />,
   },
   {
     title: "التصميم المعماري الخارجي",
+    slug: "التصميم-المعماري-الخارجي",
     description:
-      "واجهات مميزة تعكس هوية المشروع وتتناغم مع البيئة مع مراعاة الجمال والوظيفة والاستدامة",
+      "نبتكر واجهات معمارية متميزة تعكس هوية المشروع وتتناغم مع البيئة المحيطة، مع مراعاة الجمال والوظيفة ومعايير الاستدامة والعمران.",
     image: "/photoApp/architect-working-with-computer-front-windows-office.jpg",
     icon: <Building2 className="h-6 w-6 text-primary" />,
   },
   {
     title: "التصميم المعماري الداخلي",
+    slug: "التصميم-المعماري-الداخلي",
     description:
-      "تصاميم داخلية متكاملة تركز على استغلال المساحات وتنسيق الألوان والإضاءة والمواد",
+      "نوفر تصاميم داخلية متكاملة تركز على استغلال المساحات، وتنسيق الألوان والإضاءة والمواد، بما يعكس الراحة والذوق الرفيع.",
     image: "/photoApp/interior-design.jpg",
     icon: <Sofa className="h-6 w-6 text-primary" />,
   },
   {
     title: "الإشراف على المشاريع",
+    slug: "الإشراف-على-المشاريع",
     description:
-      "إشراف هندسي شامل خطوة بخطوة لضمان الالتزام بالمخططات والمواصفات وتحقيق أعلى مستويات الجودة",
+      "نقدم خدمات إشراف هندسي شامل، نتابع من خلالها تنفيذ مراحل المشاريع خطوة بخطوة لضمان الالتزام بالمخططات والمواصفات، وتحقيق أعلى مستويات الجودة في الوقت المحدد.",
     image: "/photoApp/close-up-man-with-helmet-back-view.jpg",
     icon: <HardHat className="h-6 w-6 text-primary" />,
   },
   {
     title: "الدراسات الهندسية",
+    slug: "الدراسات-الهندسية",
     description:
-      "دراسات فنية وهندسية متخصصة تدعم اتخاذ القرار وتساعد على التخطيط الأمثل",
+      "نُعد دراسات فنية وهندسية متخصصة تدعم اتخاذ القرارات وتساعد على التخطيط الأمثل للمشاريع، وفق المعايير المعتمدة والاشتراطات التنظيمية.",
     image:
       "/photoApp/image-engineering-objects-workplace-top-view-construction-concept-engineering-tools-vintage-tone-retro-filter-effect-soft-focus-selective-focus.jpg",
     icon: <ClipboardList className="h-6 w-6 text-primary" />,
   },
   {
     title: "الدراسات الجيولوجية والهيدرولوجية",
+    slug: "الدراسات-الجيولوجية-والهيدرولوجية",
     description:
-      "تحليلات للتربة والخصائص الجيولوجية والهيدرولوجية لضمان ملاءمة المواقع للإنشاء",
+      "نجري تحليلات علمية للتربة والخصائص الجيولوجية والهيدرولوجية للمواقع، لتحديد صلاحيتها للإنشاء وضمان سلامة البنية التحتية المستقبلية.",
     image: "/photoApp/scene-construction-site-with-equipment.jpg",
     icon: <Globe className="h-6 w-6 text-primary" />,
   },
   {
     title: "التقارير الهندسية",
+    slug: "التقارير-الهندسية",
     description:
-      "تقارير تفصيلية وموثقة عن الحالة الفنية للمنشآت تشمل التحاليل والملاحظات والتوصيات",
+      "نعد تقارير تفصيلية وموثقة عن الحالة الفنية للمنشآت أو المشاريع، تشمل التحاليل الفنية والملاحظات والتوصيات اللازمة للإصلاح أو التطوير أو التقييم.",
     image: "/photoApp/building-new-concrete-houses.jpg",
     icon: <ClipboardList className="h-6 w-6 text-primary" />,
   },
   {
     title: "التصاميم الكهروميكانيكية",
+    slug: "التصاميم-الكهروميكانيكية",
     description:
-      "حلول متكاملة لأنظمة الكهرباء والميكانيكا تشمل التكييف والتهوية وتغذية المياه والصرف",
+      "نوفر حلولًا متكاملة لأنظمة الكهرباء والميكانيكا، تشمل التكييف، التهوية، التغذية بالمياه، الصرف الصحي، والأنظمة التقنية، بما يضمن تشغيلًا آمنًا وفعالًا للمباني والمنشآت.",
     image: "/photoApp/construction-high-rise-building-sunset.jpg",
     icon: <FileCog className="h-6 w-6 text-primary" />,
   },
   {
     title: "تصاميم الكهرباء",
+    slug: "تصاميم-الكهرباء",
     description:
-      "تصميم شبكات توزيع الطاقة والإضاءة وأنظمة الإنذار والسلامة بكفاءة عالية",
+      "نصمم شبكات توزيع الطاقة، الإضاءة، أنظمة الإنذار، الحماية، والمراقبة، بطريقة تضمن الكفاءة والسلامة وتلبي احتياجات المنشآت على اختلاف أنواعها.",
     image: "/photoApp/beautiful-view-construction-site-city-sunset.jpg",
     icon: <Lightbulb className="h-6 w-6 text-primary" />,
   },
   {
     title: "تصاميم السلامة",
+    slug: "تصاميم-السلامة",
     description:
-      "تخطيط وتصميم أنظمة السلامة والحماية من الحريق بما يشمل مخارج الطوارئ وأنظمة الإنذار والإطفاء",
+      "نخطط ونصمم أنظمة السلامة والحماية من الحريق، بما يشمل مخارج الطوارئ، أنظمة الإنذار والإطفاء، وتجهيزات الطوارئ، وفق المعايير المعتمدة واللوائح التنظيمية.",
     image:
       "/photoApp/portrait-man-practicing-his-profession-celebrate-international-labour-day.jpg",
     icon: <ShieldAlert className="h-6 w-6 text-primary" />,
@@ -106,10 +120,17 @@ const engineeringServices = [
 ];
 
 const engineeringTools = [
-  { title: "Autodesk 3ds Max", icon: "/iconApp/3ds-max-full.svg" },
-  { title: "Autodesk", icon: "/iconApp/autodesk-4.svg" },
-  { title: "Microsoft 365", icon: "/iconApp/office-365-1.svg" },
+  { title: "Autodesk 3ds Max", icon: "/iconApp/3ds-Max-logo-01.png" },
+  { title: "Autodesk", icon: "/iconApp/autodesk2.png" },
+  { title: "Microsoft 365", icon: "/iconApp/microsoft-365.png" },
   { title: "Primavera", icon: "/iconApp/primavera-4.svg" },
+  { title: "Autocad", icon: "/iconApp/autocad2.png" },
+  { title: "D5 render", icon: "/iconApp/d5_render.png" },
+  { title: "Revit", icon: "/iconApp/revit2.png" },
+  { title: "Civil 3D", icon: "/iconApp/civil3d2.png" },
+  { title: "ETABS", icon: "/iconApp/etabs.jpg" },
+  { title: "SketchUp", icon: "/iconApp/sketchup.png" },
+  { title: "Lumion", icon: "/iconApp/lumion.png" },
 ];
 
 const values = [
@@ -152,48 +173,31 @@ const heroHighlights = [
   { title: "استشارات فورية", description: "دعم على مدار الساعة" },
 ];
 
-function FlippingBookEmbed() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+function HomeHero() {
+  const topBlobRef = useRef<HTMLDivElement>(null);
+  const bottomBlobRef = useRef<HTMLDivElement>(null);
+  const raf = useRef<number | null>(null);
 
   useEffect(() => {
-    if (document.getElementById("flippingbook-script")) return;
-    const script = document.createElement("script");
-    script.id = "flippingbook-script";
-    script.async = true;
-    script.defer = true;
-    script.src =
-      "https://online.flippingbook.com/EmbedScriptUrl.aspx?m=redir&hid=415777489";
-    document.body.appendChild(script);
+    const onScroll = () => {
+      if (raf.current) return;
+
+      raf.current = requestAnimationFrame(() => {
+        raf.current = null;
+        const y = window.scrollY;
+
+        topBlobRef.current!.style.transform = `translateY(${y * 0.5}px)`;
+        bottomBlobRef.current!.style.transform = `translateY(${y * -0.3}px)`;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf.current) cancelAnimationFrame(raf.current);
+    };
   }, []);
 
-  return (
-    <section className="section-modern bg-white pt-10">
-      <div className="container space-y-8">
-        <SectionHeading
-          title="البروفايل التعريفي"
-          subtitle="استعرض كتيب شركة غازي محمد عباس للاستشارات الهندسية مباشرةً"
-        />
-        <div ref={containerRef} className="flipping-card">
-          <a
-            href="https://online.flippingbook.com/view/415777489/"
-            className="fbo-embed text-lg font-bold text-primary"
-            data-fbo-id="abc7dfd731"
-            data-fbo-ratio="16:9"
-            data-fbo-lightbox="no"
-            data-fbo-width="100%"
-            data-fbo-height="auto"
-            data-fbo-version="1"
-            style={{ maxWidth: "100%" }}
-          >
-            البروفايل شركة غازي محمد عباس للاستشارات الهندسية
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function HomeHero({ scrollY }: HomeHeroProps) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#050723] via-[#080b2c] to-background pb-32 pt-24 text-white sm:pb-48 sm:pt-40">
       <div className="absolute inset-0 opacity-30">
@@ -215,8 +219,10 @@ function HomeHero({ scrollY }: HomeHeroProps) {
                 <Sparkles className="h-4 w-4" />
                 حلول هندسية عصرية
               </span>
-              <h1 className="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
-                <span className="text-primary">الهندسة</span> تبدأ من هنا
+              <h1 className="text-3xl font-black leading-[1.3] text-white sm:text-4xl lg:text-5xl xl:text-6xl mb-2 tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-700 drop-shadow-[0_4px_12px_rgba(92,124,250,0.3)]">
+                <span className="bg-gradient-to-r from-white via-primary/90 to-accent bg-clip-text text-transparent">
+                  حلول هندسية متكاملة من الفكرة إلى التنفيذ
+                </span>
               </h1>
               <p className="max-w-lg text-lg font-medium leading-relaxed text-white/70">
                 نقدم حلولًا هندسية متكاملة وحديثة تسهم في تطوير بيئة عمرانية
@@ -256,9 +262,9 @@ function HomeHero({ scrollY }: HomeHeroProps) {
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-inner">
               <div className="grid grid-cols-3 gap-4">
                 {[
-                  { label: "مشروع منفذ", value: "50+" },
-                  { label: "سنة خبرة", value: "15+" },
-                  { label: "عميل راضي", value: "100+" },
+                  { label: "مشروع منفذ", value: "2687+" },
+                  { label: "سنة خبرة", value: "32+" },
+                  { label: "عميل راضي", value: "4000+" },
                 ].map(stat => (
                   <div key={stat.label} className="text-center">
                     <div className="text-3xl font-black text-primary">
@@ -277,6 +283,7 @@ function HomeHero({ scrollY }: HomeHeroProps) {
             <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-primary/30 to-accent/30 blur-3xl transition-all duration-300 group-hover:blur-[110px]" />
             <img
               src="/photoApp/interior-design.jpg"
+              loading="lazy"
               alt="تصميم داخلي عصري"
               className="relative h-auto w-full rounded-[40px] border border-primary/20 object-cover shadow-[0_35px_90px_rgba(5,6,16,0.7)] transition-all duration-300 group-hover:scale-105"
             />
@@ -297,111 +304,173 @@ function HomeHero({ scrollY }: HomeHeroProps) {
 }
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+  const ourWorksImages = [
+    "/photoApp/arc.png",
+    "/photoApp/arc1.png",
+    "/photoApp/arc2.jpg",
+    "/photoApp/arc3.png",
+    "/photoApp/arc4.png",
+    "/photoApp/arc5.png",
+    "/photoApp/arc6.png",
+    "/photoApp/arc7.png",
+    "/photoApp/arc8.png",
+    "/photoApp/arc9.png",
+    "/photoApp/arc10.png",
+    "/photoApp/arc11.png",
+    "/photoApp/arc12.png",
+    "/photoApp/arc13.png",
+    "/photoApp/arc14.png",
+    "/photoApp/arc15.png",
+    "/photoApp/arc16.png",
+    "/photoApp/arc18.png",
+    "/photoApp/arc19.png",
+    "/photoApp/arc20.png",
+  ];
   return (
-    <PageLayout hero={<HomeHero scrollY={scrollY} />}>
-      <FlippingBookEmbed />
-      <section className="section-modern py-12">
-        <div className="container grid grid-cols-1 gap-10 items-center lg:grid-cols-[1.2fr_1fr]">
-          <div className="relative rounded-[32px] overflow-hidden border border-primary/10 shadow-[0_40px_80px_rgba(47,69,255,0.12)]">
-            <img
-              src="/photoApp/construction-site-sunset.jpg"
-              alt="أدواتنا الرقمية"
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+    <PageLayout hero={<HomeHero />}>
+      <PdfFlipbook pdfUrl="/companyP.pdfx" />
+
+      {/* أدواتنا الرقمية */}
+      <section
+        dir="rtl"
+        className="w-full py-24 bg-[#f3f5fe] dark:bg-[#060913]"
+      >
+        <div className="container mx-auto px-6 lg:px-12">
+          {/* Heading */}
+          <div className="space-y-4 max-lg:mb-5 max-lg:text-center">
+            <h2 className="text-4xl font-bold text-primary">أدواتنا الرقمية</h2>
+            <p className="text-lg text-[#4b5567] dark:text-[#94A3B8] max-w-xl lg:ml-auto max-lg:mx-auto">
+              نستخدم أحدث البرمجيات الهندسية لضمان أعلى مستويات الدقة والجودة في
+              التصميم والتنفيذ
+            </p>
           </div>
-          <div className="space-y-6 text-center lg:text-right">
-            <SectionHeading
-              alignment="start"
-              title="أدواتنا الرقمية"
-              subtitle="نستخدم أحدث البرمجيات لضمان جودة ودقة أعمالنا"
-            />
-            <div className="grid grid-cols-2 gap-8 text-center sm:grid-cols-4">
-              {engineeringTools.map(tool => (
-                <div
-                  key={tool.title}
-                  className="flex flex-col items-center gap-3"
-                >
-                  <img
-                    src={tool.icon}
-                    alt={tool.title}
-                    className="h-16 w-16 object-contain"
-                    loading="lazy"
-                  />
-                  <span className="text-sm font-bold text-foreground/70">
-                    {tool.title}
-                  </span>
-                </div>
-              ))}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* TEXT + TOOLS */}
+            <div className="space-y-8 text-center lg:text-right">
+              {/* Tools Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
+                {engineeringTools.map(tool => (
+                  <div
+                    key={tool.title}
+                    className="
+              flex flex-col items-center gap-4
+              p-4 rounded-xl
+              bg-white/70 dark:bg-[#0b1220]
+              hover:scale-[1.03]
+              transition-all duration-300
+              shadow-sm
+            "
+                  >
+                    <img
+                      src={tool.icon}
+                      alt={tool.title}
+                      className="h-14 w-14 object-contain"
+                      loading="lazy"
+                    />
+                    <span className="text-sm font-semibold text-[#0f1629] dark:text-[#E5E7EB]">
+                      {tool.title}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* IMAGE – SOFT ACCENT */}
+            <div className="relative hidden lg:block">
+              <div className="absolute inset-0 rounded-[28px] bg-gradient-to-tr from-[#0c21c8]/20 to-transparent"></div>
+              <img
+                src="/photoApp/construction-site-sunset.jpg"
+                alt="أدواتنا الرقمية"
+                className="
+          w-full h-[340px] object-cover rounded-[28px]
+          shadow-[0_30px_60px_rgba(12,33,200,0.15)]
+        "
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
       </section>
-      <section className="section-modern bg-gradient-to-b from-transparent via-primary/5 to-transparent">
+
+      {/* خدماتنا الهندسية */}
+      <section className="section-modern bg-linear-to-b from-transparent via-primary/5 to-transparent">
         <div className="container space-y-12">
           <SectionHeading
             title="خدماتنا الهندسية"
             subtitle="نقدم لكم مجموعة من أهم الخدمات"
           />
-
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {engineeringServices.map((service, index) => (
               <Link
-                key={service.title}
-                className="eng-card-wrapper"
-                style={{
-                  animation: `slideInUp 0.6s ease-out ${index * 0.08}s both`,
-                }}
-                href={`/engineering-services/${index}`}
+                key={index}
+                href={`/${service.slug}`}
+                className="
+                    group relative cursor-pointer
+                    rounded-xl p-6
+                    overflow-hidden
+                    bg-gradient-to-br from-blue-50/80 via-slate-50/60 to-blue-50/40
+                    dark:from-slate-900/60 dark:via-slate-800/50 dark:to-slate-900/40
+                    border border-blue-100/50 dark:border-slate-700/50
+                    shadow-sm
+                    transition-all duration-300 ease-in-out
+                    hover:bg-gradient-to-br hover:from-blue-100/90 hover:via-slate-100/80 hover:to-blue-100/60
+                    dark:hover:from-slate-800/80 dark:hover:via-slate-700/70 dark:hover:to-slate-800/60
+                    hover:border-blue-200/70 dark:hover:border-slate-600/70
+                    hover:shadow-lg hover:shadow-blue-500/10 dark:hover:shadow-blue-900/20
+                    hover:-translate-y-1
+                  "
               >
-                <div className="eng-card-content">
-                  <div className="eng-card-back">
-                    <div className="eng-card-back-content">
-                      <span className="eng-card-icon">{service.icon}</span>
-                      <strong>{service.title}</strong>
+                <div className="relative z-10 space-y-4">
+                  {/* IMAGE + TITLE */}
+                  <div className="flex items-start gap-4">
+                    {/* <img
+                      src={service.image}
+                      alt={service.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="
+                w-20 h-20 object-cover rounded-lg 
+                shadow-md dark:shadow-none
+              "
+                    /> */}
+
+                    <div className="flex-1 space-y-2">
+                      <h3
+                        className="
+                  text-2xl font-bold flex items-center gap-2
+                  text-[#0f1629] dark:text-[#F1F5F9] font-bold
+                  transition-colors duration-300
+                  group-hover:text-primary
+                "
+                      >
+                        <span className="text-[#0c21c8] dark:text-primary transition-transform duration-300 group-hover:scale-110">
+                          {service.icon}
+                        </span>
+                        {service.title}
+                      </h3>
+
+                      {/* DESCRIPTION */}
+                      <p
+                        className="
+                  text-[#4b5567]
+                  text-base leading-relaxed font-bold dark:text-[#dcdcdc] text-justify
+                  transition-colors duration-300
+                  group-hover:text-[#2d3748] dark:group-hover:text-[#e2e8f0]
+                "
+                      >
+                        {service.description}
+                      </p>
                     </div>
                   </div>
-                  <div className="eng-card-front">
-                    <div
-                      className="eng-card-img"
-                      style={{ backgroundImage: `url(${service.image})` }}
-                    >
-                      <div className="eng-card-circle" />
-                      <div className="eng-card-circle eng-card-circle-right" />
-                      <div className="eng-card-circle eng-card-circle-bottom" />
-                    </div>
-                    <div className="eng-card-front-content">
-                      <small className="eng-card-badge">خدمة هندسية</small>
-                      <div className="eng-card-description">
-                        <div className="eng-card-title">
-                          <p>
-                            <strong>{service.title}</strong>
-                          </p>
-                          <svg
-                            fillRule="nonzero"
-                            height="15"
-                            width="15"
-                            viewBox="0 0 256 256"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g transform="scale(8,8)" fill="#20c997">
-                              <path d="M25,27l-9,-6.75l-9,6.75v-23h18z" />
-                            </g>
-                          </svg>
-                        </div>
-                        <p className="eng-card-footer">{service.description}</p>
-                      </div>
-                    </div>
-                  </div>
+
+                  {/* CLICK INDICATOR */}
+                  <div
+                    className="
+              h-[2px] w-24 origin-left scale-x-[0.6] bg-[#0c21c8] dark:bg-primary
+              transition-transform duration-300 ease-in-out
+              group-hover:scale-x-100 group-hover:bg-primary
+            "
+                  ></div>
                 </div>
               </Link>
             ))}
@@ -471,6 +540,16 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section-modern bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10">
+        <div className="container space-y-12">
+          <SectionHeading
+            title="أعمالنا"
+            subtitle="أليكم مجموعة من أعمال شركتنا"
+          />
+          <OurWorksCard ourWorksImages={ourWorksImages} />
+        </div>
+      </section>
+
       <section className="section-modern relative overflow-hidden bg-gradient-to-r from-primary via-primary/90 to-accent text-white">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-white/20 blur-3xl" />
@@ -478,8 +557,7 @@ export default function Home() {
         </div>
         <div className="container relative z-10 text-center">
           <h2 className="heading-modern mb-6 text-white">
-            هل تريد استشارة هندسية؟
-          </h2>
+          ابدأ استشارتك الهندسية الآن          </h2>
           <p className="mx-auto mb-8 max-w-2xl text-2xl font-medium text-white/90">
             تواصل معنا اليوم واحصل على استشارة مجانية من فريقنا المتخصص
           </p>

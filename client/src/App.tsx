@@ -14,25 +14,29 @@ import SmoothScroll from "@/components/SmoothScroll";
 import RouteEffects from "@/components/RouteEffects";
 import EngineeringServices from "./pages/EngineeringServices";
 import ScrollToTop from "./components/ScrollToTop";
+import RequestContracts from "./pages/RequestContracts";
+import ContractRequest from "./pages/ContractRequest";
 
 function Router() {
+  const [location] = useLocation();
   return (
     <>
-      <ScrollToTop />
-      <Switch>
-        <Route path={"/"} component={Home} />
-        <Route path={"/about"} component={About} />
-        <Route path={"/services"} component={Services} />
-        <Route path={"/contact"} component={Contact} />
-        <Route path={"/portfolio"} component={Portfolio} />
-        <Route
-          path={"/engineering-services/:id"}
-          component={EngineeringServices}
-        />
-        <Route path={"/404"} component={NotFound} />
-        {/* Final fallback route */}
-        <Route component={NotFound} />
-      </Switch>
+      <AnimatePresence>
+        <ScrollToTop />
+        <Switch key={location} location={location}>
+          <Route path={"/"} component={Home} />
+          <Route path={"/about"} component={About} />
+          <Route path={"/services"} component={Services} />
+          <Route path={"/contact"} component={Contact} />
+          <Route path={"/portfolio"} component={Portfolio} />
+          <Route path={"/contracts"} component={RequestContracts} />
+          <Route path={"/contract-request"} component={ContractRequest} />
+          <Route path={"/:slug"} component={EngineeringServices} />
+          <Route path={"*"} component={NotFound} />
+          {/* Final fallback route */}
+          <Route component={NotFound} />
+        </Switch>
+      </AnimatePresence>
     </>
   );
 }

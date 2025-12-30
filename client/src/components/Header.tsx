@@ -31,52 +31,12 @@ export default function Header() {
 
   return (
     <mot.header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         scrolled
           ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg"
           : "bg-background border-b border-border/50"
       }`}
     >
-      {/* Top Bar - معلومات التواصل */}
-      <div className="bg-gradient-to-r from-primary/10 to-accent/10 text-foreground py-3 px-4 text-sm border-b border-border/50">
-        <div className="container flex justify-between items-center">
-          <div className="flex gap-6">
-            <a
-              href={`tel:${CONTACT_PHONE}`}
-              className="hover:text-primary transition-colors font-medium flex items-center gap-2"
-            >
-              <span>📞</span>
-              {CONTACT_PHONE}
-            </a>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="hover:text-primary transition-colors font-medium flex items-center gap-2"
-            >
-              <span>✉️</span>
-              {CONTACT_EMAIL}
-            </a>
-            <a
-              href={`mailto:${CONTACT_EMAIL_FORM}`}
-              className="hover:text-primary transition-colors font-medium flex items-center gap-2 hidden md:flex"
-            >
-              <span>📧</span>
-              {CONTACT_EMAIL_FORM}
-            </a>
-          </div>
-          <div className="hidden sm:flex gap-4">
-            <a href="#" className="hover:text-primary transition-colors">
-              Facebook
-            </a>
-            <a href="#" className="hover:text-primary transition-colors">
-              Twitter
-            </a>
-            <a href="#" className="hover:text-primary transition-colors">
-              Instagram
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navigation */}
       <nav className="container flex items-center justify-between py-4">
         <Link
@@ -129,6 +89,14 @@ export default function Header() {
             </button>
           ) : null}
 
+          {/* Request Contracts Button - Desktop */}
+          <Link
+            href="/contracts"
+            className="hidden rounded-lg border-2 border-primary bg-transparent px-5 py-2 font-bold text-primary transition-all duration-300 hover:bg-primary hover:text-white hover:scale-105 hover:shadow-lg md:block"
+          >
+            طلب التعاقدات
+          </Link>
+
           {/* CTA Button - Desktop */}
           <Link
             href="/contact"
@@ -178,6 +146,13 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href="/contracts"
+                onClick={() => setIsMenuOpen(false)}
+                className="w-full rounded-lg border-2 border-primary bg-transparent px-6 py-3 text-center font-bold text-primary transition-all hover:bg-primary hover:text-white hover:shadow-lg"
+              >
+                طلب التعقدات
+              </Link>
               <Link
                 href="/contact"
                 onClick={() => setIsMenuOpen(false)}

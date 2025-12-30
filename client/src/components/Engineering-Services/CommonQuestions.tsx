@@ -1,6 +1,5 @@
 import React from "react";
 import Question from "./Question";
-import ContactUs from "./ContactUs";
 import { ServiceType } from "@/lib/utils";
 type CommonQuestionsProps = {
   commonQ: ServiceType["CommonQuestions"];
@@ -9,20 +8,25 @@ import { motion } from "motion/react";
 
 function CommonQuestions({ commonQ }: CommonQuestionsProps) {
   return (
-    <div className="px-8 py-8 mt-16 bg-[#f3f5ff] dark:bg-[#050710]">
-      <div className="container px-8 flex max-lg:flex-col gap-3 items-center max-lg:text-center">
+    <section className="w-full py-16 sm:py-20 lg:py-24 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="mb-5 w-1/2 max-xl:w-3/4"
+          className="max-w-4xl mx-auto"
         >
-          <h1 className="text-[45px] max-md:text-3xl max-md:mx-auto font-extrabold w-fit mb-5 text-[#2f45ff]">
-            {commonQ.title}{" "}
-            <span className="mt-px bg-[#d5b26e] h-px block"></span>
-          </h1>
-          <div className="flex flex-col gap-2 lg:max-w-3/4">
+          {/* Section Heading */}
+          <div className="text-center mb-12 space-y-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-primary tracking-tight">
+              {commonQ.title}
+            </h2>
+            <div className="h-1 w-16 bg-primary rounded-full mx-auto" />
+          </div>
+
+          {/* Questions List */}
+          <div className="flex flex-col gap-4">
             {commonQ.boxes.map((b, i) => {
               return (
                 <Question key={i} question={b.question} answer={b.answer} />
@@ -30,9 +34,8 @@ function CommonQuestions({ commonQ }: CommonQuestionsProps) {
             })}
           </div>
         </motion.div>
-        <ContactUs />
       </div>
-    </div>
+    </section>
   );
 }
 

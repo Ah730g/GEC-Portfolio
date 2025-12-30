@@ -56,15 +56,16 @@ function OurServices({ ourServices }: OurServicesProps) {
         <div className="flex flex-col justify-center items-center mt-5 gap-7">
           {ourServices.buttons.map((b, i) => {
             return (
-              <motion.button
+              <motion.a
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
                 className="text-2xl max-md:text-xl font-bold bg-[#2f45ff] px-5 py-3 cursor-pointer text-white rounded-sm
         hover:bg-[#091a9b] transition"
+                href="/contact"
               >
                 {b}{" "}
-              </motion.button>
+              </motion.a>
             );
           })}
         </div>

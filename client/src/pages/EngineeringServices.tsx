@@ -11,43 +11,33 @@ import Contact from "./Contact";
 import { useParams } from "wouter";
 import { Services, ServiceType } from "../lib/utils";
 import { motion } from "motion/react";
+import PageLayout from "@/components/PageLayout";
 
 function EngineeringServices() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [service, setService] = useState<ServiceType | null>(null);
 
   useEffect(() => {
-    if (id == undefined) return;
-    const index = Number(id);
-    setService(pre => Services[index]);
-    console.log(service);
+    if (slug == undefined) return;
+    const s: ServiceType = Services.find(s => s.slug == slug);
+    setService(s);
   }, []);
   return (
-    <div className="bg-white dark:bg-[#050710]">
-      <Header></Header>
-      <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="title text-center p-5 text-[45px] max-md:text-[30px] font-extrabold rounded-b-[80px] h-[150px] dark:bg-[#111a33]
-       bg-[#f3f5ff] flex justify-center items-center"
-      >
-        <h1 className="text-[#2f45ff] w-fit dark:text-white">
-          {service?.title}
-        </h1>
-      </motion.div>
-      {service && (
-        <>
-          <Description description={service.Description} />
-          <OurServices ourServices={service.OurServices} />
-          <OurFeatures ourFeatures={service.OurFeatures} />
-          <CommonQuestions commonQ={service.CommonQuestions} />
-        </>
-      )}
-
-      <Footer />
-    </div>
+    <PageLayout>
+      <div className="bg-white dark:bg-[#050710]">
+        {service && (
+          <>
+            <Description
+              description={service.Description}
+              title={service.title}
+            />
+            <OurServices ourServices={service.OurServices} />
+            <OurFeatures ourFeatures={service.OurFeatures} />
+            <CommonQuestions commonQ={service.CommonQuestions} />
+          </>
+        )}
+      </div>
+    </PageLayout>
   );
 }
 

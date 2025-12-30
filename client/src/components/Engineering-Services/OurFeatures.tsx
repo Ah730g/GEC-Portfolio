@@ -48,12 +48,13 @@ function OurFeatures({ ourFeatures }: OurFeatureProps) {
             );
           })}
 
-          <button
+          <a
             className="text-2xl max-md:text-xl font-bold bg-[#2f45ff] px-5 py-3 cursor-pointer text-white rounded-sm
         hover:bg-[#091a9b] hover:scale-105 transition w-fit max-md:mx-auto"
+            href="/contact"
           >
             تواصل معنا
-          </button>
+          </a>
         </div>
         <div className="flex-1/2">
           <img src="/photoApp/scrapes.jpg" alt="" className="w-full h-auto" />
