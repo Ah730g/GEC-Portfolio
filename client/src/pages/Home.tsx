@@ -19,6 +19,11 @@ import {
   Lightbulb,
   PhoneCall,
   Sparkles,
+  ClipboardCheck,
+  SearchCheck,
+  FileCheck2,
+  Wrench,
+  Projector,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
@@ -117,6 +122,54 @@ const engineeringServices = [
       "/photoApp/portrait-man-practicing-his-profession-celebrate-international-labour-day.jpg",
     icon: <ShieldAlert className="h-6 w-6 text-primary" />,
   },
+  {
+    title: "الخدمات الإنشائية",
+    slug: "الخدمات-الانشائية",
+    description:
+      "نقدم خدمات إنشائية متكاملة تشمل التصميم الإنشائي والتحليل الهندسي للمباني والمنشآت بمختلف أنواعها، مع ضمان السلامة الإنشائية والكفاءة الاقتصادية، والالتزام الكامل بالكود السعودي للبناء والمعايير العالمية.",
+    image: "/photoApp/structural-services.jpg",
+    icon: <Building2 className="h-6 w-6 text-primary" />,
+  },
+  {
+    title: "الإشراف الهندسي",
+    slug: "الاشراف-الهندسي",
+    description:
+      "نوفر خدمات الإشراف الهندسي لمتابعة تنفيذ المشاريع في جميع مراحلها، وضمان مطابقة الأعمال للمخططات والمواصفات الفنية، وتحقيق أعلى مستويات الجودة مع الالتزام بالجدول الزمني والتكلفة المعتمدة.",
+    image: "/photoApp/engineering-supervision.jpg",
+    icon: <ClipboardCheck className="h-6 w-6 text-primary" />,
+  },
+  {
+    title: "الفحص والتقييم الإنشائي",
+    slug: "الفحص-والتقييم-الانشائي",
+    description:
+      "نقوم بأعمال الفحص والتقييم الإنشائي للمباني القائمة لتحديد حالتها الإنشائية، واكتشاف العيوب والمخاطر المحتملة، وتقديم تقارير فنية دقيقة مع الحلول والتوصيات اللازمة لضمان السلامة والاستدامة.",
+    image: "/photoApp/structural-assessment.jpg",
+    icon: <SearchCheck className="h-6 w-6 text-primary" />,
+  },
+  {
+    title: "التراخيص والاعتمادات",
+    slug: "التراخيص-والاعتمادات",
+    description:
+      "نساعد عملاءنا في استخراج التراخيص والاعتمادات اللازمة للمشاريع الهندسية، وتجهيز المخططات والمستندات المطلوبة، ومتابعة الإجراءات مع الجهات المختصة لضمان سرعة الإنجاز والالتزام النظامي.",
+    image: "/photoApp/engineering-licenses.jpg",
+    icon: <FileCheck2 className="h-6 w-6 text-primary" />,
+  },
+  {
+    title: "إدارة المشاريع الإنشائية",
+    slug: "ادارة-المشاريع-الانشائية",
+    description:
+      "نقدم خدمات إدارة المشاريع الإنشائية بدءًا من التخطيط وحتى التسليم، مع التحكم في الوقت والتكلفة والجودة، والتنسيق بين جميع الأطراف لضمان تنفيذ المشروع بكفاءة واحترافية عالية.",
+    image: "/photoApp/construction-management.jpg",
+    icon: <Projector className="h-6 w-6 text-primary" />,
+  },
+  {
+    title: "أعمال الترميم والتدعيم",
+    slug: "اعمال-الترميم-والتدعيم",
+    description:
+      "نقدم حلولًا هندسية متخصصة لأعمال الترميم والتدعيم الإنشائي للمباني المتضررة أو القديمة، باستخدام أحدث التقنيات والمواد لضمان رفع كفاءة المنشأ وإطالة عمره الافتراضي.",
+    image: "/photoApp/structural-retrofitting.jpg",
+    icon: <Wrench className="h-6 w-6 text-primary" />,
+  },
 ];
 
 const engineeringTools = [
@@ -155,7 +208,80 @@ const values = [
     description: "احترام الوقت والميزانية",
   },
 ];
-
+const servicesSections = [
+  {
+    id: "operation-maintenance",
+    title: "التشغيل والصيانة المتكاملة للمشاريع العامة والخاصة",
+    description:
+      "نقدّم حلول تشغيل وصيانة شاملة تهدف إلى ضمان استدامة المباني والمرافق، ورفع كفاءتها التشغيلية، والحفاظ على سلامتها الفنية، وذلك وفق أعلى المعايير الهندسية والفنية المعتمدة.",
+    image: "/photoApp/operation&maintenance.jpg",
+    note: "التشغيل والصيانة الاحترافية تساهم في خفض التكاليف التشغيلية على المدى الطويل، وإطالة العمر الافتراضي للمباني والمرافق، والحد من الأعطال المفاجئة وتحسين مستوى الاعتمادية.",
+    services: [
+      {
+        id: "building-works",
+        title: "أعمال المباني",
+        description:
+          "صيانة وإدارة المباني السكنية والتجارية، وتشمل الأعمال الإنشائية، معالجة التشققات، أعمال العزل، وصيانة الأسطح، بما يضمن السلامة والاستمرارية وجودة الأداء.",
+      },
+      {
+        id: "road-works",
+        title: "أعمال الطرق",
+        description:
+          "تنفيذ وصيانة أعمال الأسفلت، التخطيط الأرضي، وأعمال الدهان باستخدام مادة الثرموبلاستيك، وفق المواصفات المعتمدة ومعايير السلامة المرورية.",
+      },
+      {
+        id: "infrastructure-maintenance",
+        title: "صيانة المرافق والبنية التحتية",
+        description:
+          "تشغيل وصيانة شبكات المياه، الصرف الصحي، الكهرباء، والطرق، مع ضمان كفاءة التشغيل وتقليل الأعطال المفاجئة.",
+      },
+      {
+        id: "facility-management",
+        title: "إدارة وتشغيل المنشآت",
+        description:
+          "الإشراف الكامل على تشغيل المنشآت، إعداد وتنفيذ جداول الصيانة الدورية والوقائية، وتحسين استهلاك الموارد والطاقة لتحقيق أعلى كفاءة تشغيلية.",
+      },
+    ],
+  },
+  {
+    id: "contracting",
+    title: "المقاولات العامة وتنفيذ المشاريع الهندسية",
+    description:
+      "تتولى الشركة تنفيذ مشاريع المقاولات العامة وفق خطط تنفيذ معتمدة ومنهجيات هندسية مدروسة، مع الالتزام الكامل بالمواصفات الفنية، والكودات الهندسية المعتمدة، ومتطلبات السلامة والصحة المهنية، وبما يضمن جودة التنفيذ وتحقيق مستهدفات الجهات المالكة ضمن الإطار الزمني والمالي المعتمد.",
+    image: "/photoApp/Design.jpg",
+    note: "يعتمد نجاح مشاريع المقاولات على الالتزام بالمنهجيات المعتمدة، ودقة التخطيط، وجودة التنفيذ، والمتابعة المستمرة في جميع مراحل المشروع، بما يضمن تحقيق متطلبات الجهات الحكومية والرقابية.",
+    services: [
+      {
+        id: "finishing-works",
+        title: "أعمال التشطيبات المعمارية",
+        description:
+          "تنفيذ أعمال التشطيبات الداخلية والخارجية للمباني، بما يشمل الأرضيات، الدهانات، الأسقف، الواجهات المعمارية، وأعمال العزل، وفق المواصفات الفنية المعتمدة وبما يحقق متطلبات الجودة والاعتماد.",
+        image: "",
+      },
+      {
+        id: "structural-contracting",
+        title: "المقاولات الإنشائية (عظم)",
+        description:
+          "تنفيذ المباني السكنية والتجارية والحكومية، ابتداءً من أعمال الحفر والأساسات وحتى تنفيذ الهياكل الخرسانية، مع الالتزام التام بالكودات الهندسية السعودية والاشتراطات النظامية ذات العلاقة.",
+        image: "",
+      },
+      {
+        id: "rehabilitation-restoration",
+        title: "أعمال الترميم وإعادة التأهيل",
+        description:
+          "تنفيذ أعمال ترميم وتأهيل المباني القائمة، معالجة العيوب الإنشائية، تدعيم العناصر الإنشائية عند الحاجة، وتحسين الكفاءة الوظيفية للمباني بما يتوافق مع متطلبات الاستخدام والمعايير المعتمدة.",
+        image: "",
+      },
+      {
+        id: "project-management",
+        title: "إدارة وتنفيذ المشاريع",
+        description:
+          "التخطيط والتنفيذ والإشراف على المشاريع الهندسية، إعداد البرامج الزمنية، تنسيق الأعمال بين الجهات ذات العلاقة، متابعة سير العمل، وضمان الالتزام بالجدول الزمني، المواصفات الفنية، والتكاليف المعتمدة حتى مرحلة التسليم الابتدائي والنهائي.",
+        image: "",
+      },
+    ],
+  },
+];
 const benefits = [
   "فريق متخصص وذو خبرة عالية",
   "تقنيات حديثة وأدوات متطورة",
@@ -329,6 +455,101 @@ export default function Home() {
   return (
     <PageLayout hero={<HomeHero />}>
       <PdfFlipbook pdfUrl="/companyP.pdfx" />
+
+      {/* Services Sections */}
+      {servicesSections.map((section, sectionIndex) => (
+        <section
+          key={section.id}
+          className={`w-full py-16 lg:py-24 ${
+            sectionIndex % 2 === 0
+              ? "bg-white dark:bg-[#0a0f1e]"
+              : "bg-[#f3f5fe] dark:bg-[#060913]"
+          }`}
+        >
+          <div className="container mx-auto px-6 lg:px-12">
+            {/* Section Header with Image */}
+            <div className="mb-16">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                {/* Image Column - Alternates position */}
+                <div
+                  className={
+                    sectionIndex % 2 === 0
+                      ? "order-2 lg:order-1"
+                      : "order-2 lg:order-2"
+                  }
+                >
+                  <div className="relative rounded-2xl overflow-hidden shadow-lg group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <img
+                      src={section.image}
+                      alt={section.title}
+                      className="w-full h-[300px] lg:h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+                {/* Content Column - Alternates position */}
+                <div
+                  className={
+                    sectionIndex % 2 === 0
+                      ? "order-1 lg:order-2 text-center lg:text-right"
+                      : "order-1 lg:order-1 text-center lg:text-right"
+                  }
+                >
+                  <h2 className="text-3xl lg:text-4xl font-black text-primary mb-4 leading-tight">
+                    {section.title}
+                  </h2>
+                  <div className="h-1 w-20 bg-primary rounded-full mx-auto lg:mx-0 mb-6" />
+                  <p className="text-lg lg:text-xl text-[#4b5567] text-justify dark:text-[#94a3b8] leading-relaxed font-medium">
+                    {section.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Services Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {section.services.map(service => (
+                <div
+                  key={service.id}
+                  className="
+                    bg-white dark:bg-[#0f1629]
+                    border border-[#e5e7eb] dark:border-[#1e293b]
+                    rounded-xl p-6
+                    shadow-sm
+                    transition-all duration-300
+                    hover:shadow-md hover:border-primary/30 dark:hover:border-primary/50
+                    hover:-translate-y-1
+                  "
+                >
+                  <h3 className="text-xl font-bold text-[#0f1629] dark:text-white mb-3 leading-tight">
+                    {service.title}
+                  </h3>
+                  <p className="text-base text-[#6b7280] dark:text-[#94a3b8] leading-relaxed font-medium">
+                    {service.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Highlighted Note Area */}
+            <div
+              className="
+              bg-gradient-to-br from-primary/5 via-primary/3 to-accent/5
+              dark:from-primary/10 dark:via-primary/5 dark:to-accent/10
+              border-l-4 border-primary
+              rounded-lg p-6 lg:p-8
+              shadow-sm
+            "
+            >
+              <p className="text-base lg:text-lg text-[#374151] dark:text-[#e5e7eb] leading-relaxed font-medium">
+                {section.note}
+              </p>
+            </div>
+          </div>
+        </section>
+      ))}
 
       {/* أدواتنا الرقمية */}
       <section
@@ -557,7 +778,8 @@ export default function Home() {
         </div>
         <div className="container relative z-10 text-center">
           <h2 className="heading-modern mb-6 text-white">
-          ابدأ استشارتك الهندسية الآن          </h2>
+            ابدأ استشارتك الهندسية الآن{" "}
+          </h2>
           <p className="mx-auto mb-8 max-w-2xl text-2xl font-medium text-white/90">
             تواصل معنا اليوم واحصل على استشارة مجانية من فريقنا المتخصص
           </p>
