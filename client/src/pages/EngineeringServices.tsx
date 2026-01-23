@@ -21,7 +21,7 @@ function EngineeringServices() {
     if (slug == undefined) return;
     const s: ServiceType = Services.find(s => s.slug == slug);
     setService(s);
-  }, []);
+  }, [slug]);
   return (
     <PageLayout>
       <div className="bg-white dark:bg-[#050710]">

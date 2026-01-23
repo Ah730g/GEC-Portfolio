@@ -8,6 +8,16 @@ type Props = {
   pdfUrl: string;
 };
 
+// Module-level cache to persist PDF pages across component unmounts/remounts
+type PdfCacheEntry = {
+  pages: string[];
+  imageDimensions: { width: number; height: number } | null;
+  timestamp: number;
+};
+
+const pdfCache = new Map<string, PdfCacheEntry>();
+const CACHE_DURATION = 60 * 60 * 1000; // 1 hour cache duration
+
 export default function PdfFlipbook({ pdfUrl }: Props) {
   const [pages, setPages] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -68,12 +78,36 @@ export default function PdfFlipbook({ pdfUrl }: Props) {
 
     const loadPdf = async () => {
       try {
+        // Check cache first
+        const cached = pdfCache.get(pdfUrl);
+        const now = Date.now();
+        
+        if (cached && (now - cached.timestamp) < CACHE_DURATION) {
+          // Use cached pages
+          console.log("Loading PDF from cache:", pdfUrl);
+          setPages(cached.pages);
+          if (cached.imageDimensions) {
+            setImageDimensions(cached.imageDimensions);
+          } else if (cached.pages.length > 0) {
+            // Load dimensions if not cached
+            const img = new Image();
+            img.onload = () => {
+              const dims = { width: img.width, height: img.height };
+              setImageDimensions(dims);
+              // Update cache with dimensions
+              pdfCache.set(pdfUrl, { ...cached, imageDimensions: dims });
+            };
+            img.src = cached.pages[0];
+          }
+          setLoading(false);
+          return;
+        }
+
+        // Not in cache or expired, load from scratch
         setLoading(true);
         setError(null);
         setPages([]);
-
-        // Verify the PDF file is accessible
-        console.log("Loading PDF from:", pdfUrl);
+        console.log("Loading PDF from source:", pdfUrl);
         
         const pdf = await pdfjsLib.getDocument({ 
           url: pdfUrl,
@@ -92,6 +126,8 @@ export default function PdfFlipbook({ pdfUrl }: Props) {
         };
 
         for (let i = 1; i <= pdf.numPages; i++) {
+          if (cancelled) return;
+          
           const page = await pdf.getPage(i);
           const viewport = page.getViewport({ scale: getScale() });
 
@@ -106,14 +142,29 @@ export default function PdfFlipbook({ pdfUrl }: Props) {
 
         if (!cancelled) {
           setPages(images);
+          
           // Get image dimensions from first page to calculate proper aspect ratio
+          let imageDims: { width: number; height: number } | null = null;
           if (images.length > 0) {
             const img = new Image();
-            img.onload = () => {
-              setImageDimensions({ width: img.width, height: img.height });
-            };
-            img.src = images[0];
+            await new Promise<void>((resolve) => {
+              img.onload = () => {
+                imageDims = { width: img.width, height: img.height };
+                setImageDimensions(imageDims);
+                resolve();
+              };
+              img.onerror = () => resolve();
+              img.src = images[0];
+            });
           }
+          
+          // Cache the pages and dimensions
+          pdfCache.set(pdfUrl, {
+            pages: images,
+            imageDimensions: imageDims,
+            timestamp: Date.now()
+          });
+          console.log("PDF cached for future use");
         }
       } catch (err) {
         console.error("PDF load failed:", err);

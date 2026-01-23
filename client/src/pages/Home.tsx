@@ -25,11 +25,12 @@ import {
   Wrench,
   Projector,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback, lazy, Suspense } from "react";
 import { Link } from "wouter";
 import EngineeringServices from "./EngineeringServices";
 import OurWorksCard from "@/components/ui/OurWorkCard";
-import PdfFlipbook from "@/components/PdfFlipbook";
+
+const PdfFlipbook = lazy(() => import("@/components/PdfFlipbook"));
 
 const engineeringServices = [
   {
@@ -328,12 +329,12 @@ function HomeHero() {
     <section className="relative overflow-hidden bg-gradient-to-b from-[#050723] via-[#080b2c] to-background pb-32 pt-24 text-white sm:pb-48 sm:pt-40">
       <div className="absolute inset-0 opacity-30">
         <div
+          ref={topBlobRef}
           className="absolute top-0 right-0 h-[420px] w-[420px] rounded-full bg-primary blur-[150px] transition-transform duration-300"
-          style={{ transform: `translateY(${scrollY * 0.5}px)` }}
         />
         <div
+          ref={bottomBlobRef}
           className="absolute bottom-0 left-0 h-[380px] w-[380px] rounded-full bg-[#8c5dff] blur-[140px] transition-transform duration-300"
-          style={{ transform: `translateY(${scrollY * -0.3}px)` }}
         />
       </div>
 
@@ -409,7 +410,9 @@ function HomeHero() {
             <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-primary/30 to-accent/30 blur-3xl transition-all duration-300 group-hover:blur-[110px]" />
             <img
               src="/photoApp/interior-design.jpg"
-              loading="lazy"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               alt="تصميم داخلي عصري"
               className="relative h-auto w-full rounded-[40px] border border-primary/20 object-cover shadow-[0_35px_90px_rgba(5,6,16,0.7)] transition-all duration-300 group-hover:scale-105"
             />
@@ -429,32 +432,119 @@ function HomeHero() {
   );
 }
 
+const EngineeringToolsImages = [
+  "/photoApp/arc.png",
+  "/photoApp/arc1.png",
+  "/photoApp/arc2.jpg",
+  "/photoApp/arc3.png",
+  "/photoApp/arc4.png",
+  "/photoApp/arc5.png",
+  "/photoApp/arc6.png",
+  "/photoApp/arc7.png",
+  "/photoApp/arc8.png",
+  "/photoApp/arc9.png",
+  "/photoApp/arc10.png",
+  "/photoApp/arc11.png",
+  "/photoApp/arc12.png",
+  "/photoApp/arc13.png",
+  "/photoApp/arc14.png",
+  "/photoApp/arc15.png",
+  "/photoApp/arc16.png",
+  "/photoApp/arc18.png",
+  "/photoApp/arc19.png",
+  "/photoApp/arc20.png",
+];
+
 export default function Home() {
-  const ourWorksImages = [
-    "/photoApp/arc.png",
-    "/photoApp/arc1.png",
-    "/photoApp/arc2.jpg",
-    "/photoApp/arc3.png",
-    "/photoApp/arc4.png",
-    "/photoApp/arc5.png",
-    "/photoApp/arc6.png",
-    "/photoApp/arc7.png",
-    "/photoApp/arc8.png",
-    "/photoApp/arc9.png",
-    "/photoApp/arc10.png",
-    "/photoApp/arc11.png",
-    "/photoApp/arc12.png",
-    "/photoApp/arc13.png",
-    "/photoApp/arc14.png",
-    "/photoApp/arc15.png",
-    "/photoApp/arc16.png",
-    "/photoApp/arc18.png",
-    "/photoApp/arc19.png",
-    "/photoApp/arc20.png",
-  ];
+  // State for rotating image in أدواتنا الرقمية section
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [containerHeight, setContainerHeight] = useState<number | null>(null);
+  const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
+
+  // Function to update container height
+  const updateContainerHeight = useCallback(() => {
+    const currentImage = imageRefs.current[currentImageIndex];
+    if (currentImage && currentImage.complete && currentImage.naturalWidth > 0) {
+      const aspectRatio = currentImage.naturalHeight / currentImage.naturalWidth;
+      const containerWidth = currentImage.parentElement?.clientWidth || 0;
+      if (containerWidth > 0) {
+        setContainerHeight(containerWidth * aspectRatio);
+      }
+    }
+  }, [currentImageIndex]);
+
+  // Update container height when image changes
+  useEffect(() => {
+    updateContainerHeight();
+  }, [updateContainerHeight]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      updateContainerHeight();
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [updateContainerHeight]);
+
+  // Handle image load to update container height
+  const handleImageLoad = (index: number) => {
+    if (index === currentImageIndex) {
+      updateContainerHeight();
+    }
+  };
+
+  // Rotate images every 30 seconds
+  useEffect(() => {
+    if (EngineeringToolsImages.length === 0) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex(
+        prevIndex => (prevIndex + 1) % EngineeringToolsImages.length
+      );
+    }, 30000); // 30 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const ourWorksImages = useMemo(
+    () => [
+      "/photoApp/arc.png",
+      "/photoApp/arc1.png",
+      "/photoApp/arc2.jpg",
+      "/photoApp/arc3.png",
+      "/photoApp/arc4.png",
+      "/photoApp/arc5.png",
+      "/photoApp/arc6.png",
+      "/photoApp/arc7.png",
+      "/photoApp/arc8.png",
+      "/photoApp/arc9.png",
+      "/photoApp/arc10.png",
+      "/photoApp/arc11.png",
+      "/photoApp/arc12.png",
+      "/photoApp/arc13.png",
+      "/photoApp/arc14.png",
+      "/photoApp/arc15.png",
+      "/photoApp/arc16.png",
+      "/photoApp/arc18.png",
+      "/photoApp/arc19.png",
+      "/photoApp/arc20.png",
+    ],
+    []
+  );
+
   return (
     <PageLayout hero={<HomeHero />}>
-      <PdfFlipbook pdfUrl="/companyP.pdfx" />
+      <Suspense
+        fallback={
+          <div className="flex items-center justify-center h-[70vh]">
+            <div className="h-12 w-12 animate-spin rounded-full border-4 border-slate-400 border-t-transparent" />
+          </div>
+        }
+      >
+        <PdfFlipbook pdfUrl="/companyP.pdfx" />
+      </Suspense>
 
       {/* Services Sections */}
       {servicesSections.map((section, sectionIndex) => (
@@ -485,6 +575,8 @@ export default function Home() {
                       alt={section.title}
                       className="w-full h-[300px] lg:h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
+                      decoding="async"
+                      fetchPriority={sectionIndex === 0 ? "high" : "low"}
                     />
                   </div>
                 </div>
@@ -598,16 +690,36 @@ export default function Home() {
 
             {/* IMAGE – SOFT ACCENT */}
             <div className="relative hidden lg:block">
-              <div className="absolute inset-0 rounded-[28px] bg-gradient-to-tr from-[#0c21c8]/20 to-transparent"></div>
-              <img
-                src="/photoApp/construction-site-sunset.jpg"
-                alt="أدواتنا الرقمية"
-                className="
-          w-full h-[340px] object-cover rounded-[28px]
-          shadow-[0_30px_60px_rgba(12,33,200,0.15)]
-        "
-                loading="lazy"
-              />
+              <div className="absolute inset-0 rounded-[28px] bg-gradient-to-tr from-[#0c21c8]/20 to-transparent z-10"></div>
+              <div 
+                className="relative w-full rounded-[28px] overflow-hidden transition-all duration-500 ease-in-out"
+                style={{
+                  height: containerHeight ? `${containerHeight}px` : 'auto',
+                  minHeight: containerHeight ? undefined : '340px',
+                  aspectRatio: containerHeight ? undefined : '16/9'
+                }}
+              >
+                {EngineeringToolsImages.map((imageSrc, index) => (
+                  <img
+                    key={imageSrc}
+                    ref={(el) => {
+                      imageRefs.current[index] = el;
+                    }}
+                    src={imageSrc}
+                    alt="أدواتنا الرقمية"
+                    onLoad={() => handleImageLoad(index)}
+                    className={`
+                      absolute inset-0 w-full h-full object-cover rounded-[28px]
+                      shadow-[0_30px_60px_rgba(12,33,200,0.15)]
+                      transition-opacity duration-1000 ease-in-out
+                      ${index === currentImageIndex ? "opacity-100" : "opacity-0"}
+                    `}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                    fetchPriority={index === 0 ? "high" : "low"}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>

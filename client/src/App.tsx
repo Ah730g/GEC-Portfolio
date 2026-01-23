@@ -12,10 +12,13 @@ import Portfolio from "./pages/Portfolio";
 import { AnimatePresence, motion } from "framer-motion";
 import SmoothScroll from "@/components/SmoothScroll";
 import RouteEffects from "@/components/RouteEffects";
-import EngineeringServices from "./pages/EngineeringServices";
+import { lazy, Suspense } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import RequestContracts from "./pages/RequestContracts";
 import ContractRequest from "./pages/ContractRequest";
+
+// Lazy load heavy components for better performance
+const EngineeringServices = lazy(() => import("./pages/EngineeringServices"));
 
 function Router() {
   const [location] = useLocation();
@@ -31,9 +34,17 @@ function Router() {
           <Route path={"/portfolio"} component={Portfolio} />
           <Route path={"/contracts"} component={RequestContracts} />
           <Route path={"/contract-request"} component={ContractRequest} />
-          <Route path={"/:slug"} component={EngineeringServices} />
-          <Route path={"*"} component={NotFound} />
-          {/* Final fallback route */}
+          <Route path={"/:slug"}>
+            {() => (
+              <Suspense fallback={
+                <div className="flex items-center justify-center min-h-screen">
+                  <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+                </div>
+              }>
+                <EngineeringServices />
+              </Suspense>
+            )}
+          </Route>
           <Route component={NotFound} />
         </Switch>
       </AnimatePresence>

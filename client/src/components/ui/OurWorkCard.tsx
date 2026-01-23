@@ -5,19 +5,21 @@ type Props = {
   ourWorksImages: string[];
 };
 
+const INITIAL_IMAGES_COUNT = 8; // Reduced from 12 for better initial load
+
 export default function OurWorksCard({ ourWorksImages }: Props) {
-  const [images, setImages] = useState(ourWorksImages);
+  const [images, setImages] = useState(() => 
+    ourWorksImages.slice(0, INITIAL_IMAGES_COUNT)
+  );
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [more, setMore] = useState(false);
+  
   const openAt = (index: number) => {
     setActiveIndex(index);
     setOpen(true);
   };
-  const isMore = () => {
-    if (!more) setImages(ourWorksImages.slice(0, 12));
-    else setImages(ourWorksImages);
-  };
+  
   const close = () => setOpen(false);
 
   const prev = () =>
@@ -25,8 +27,12 @@ export default function OurWorksCard({ ourWorksImages }: Props) {
   const next = () => setActiveIndex(i => (i + 1) % images.length);
 
   useEffect(() => {
-    isMore();
-  }, [more]);
+    if (more) {
+      setImages(ourWorksImages);
+    } else {
+      setImages(ourWorksImages.slice(0, INITIAL_IMAGES_COUNT));
+    }
+  }, [more, ourWorksImages]);
 
   // Lock scroll when modal is open
   useEffect(() => {
@@ -68,7 +74,9 @@ export default function OurWorksCard({ ourWorksImages }: Props) {
               src={img}
               alt=""
               className="w-full h-full object-cover rounded-md transition-transform duration-300 group-hover:scale-[1.03]"
-              loading="lazy"
+              loading={index < INITIAL_IMAGES_COUNT ? "eager" : "lazy"}
+              decoding="async"
+              fetchPriority={index < 4 ? "high" : "low"}
             />
 
             {/* HOVER OVERLAY */}
@@ -98,7 +106,7 @@ export default function OurWorksCard({ ourWorksImages }: Props) {
         ))}
       </div>
 
-      {!more && ourWorksImages.length > 12 && (
+      {!more && ourWorksImages.length > INITIAL_IMAGES_COUNT && (
         <button
           className="btn-modern bg-gradient-to-r from-primary to-primary/80 text-white hover:shadow-2xl mx-auto block"
           onClick={() => {

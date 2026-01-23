@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Ant Design: floating quick actions (RTL aware)
 // Note: Avoid importing Ant Design global reset to prevent style conflicts
@@ -10,9 +10,8 @@ import {
   ArrowUpOutlined,
 } from "@ant-design/icons";
 
-// MUI: Back-to-top FAB
-import { Tooltip as MuiTooltip, Fab } from "@mui/material";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+// Lucide React: Back-to-top icon
+import { ChevronUp } from "lucide-react";
 
 // Chakra: toast on CTA click
 // Remove Chakra dependency to avoid global CSS conflicts
@@ -32,17 +31,24 @@ function BackToTopFab() {
   if (!visible) return null;
   return (
     <div className="fixed left-4 bottom-4 z-[60]">
-      <MuiTooltip title="أعلى الصفحة">
-        <Fab
-          color="primary"
-          size="medium"
-          aria-label="أعلى الصفحة"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          sx={{ bgcolor: "#2f45ff" }}
-        >
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </MuiTooltip>
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="أعلى الصفحة"
+        title="أعلى الصفحة"
+        className="
+          flex items-center justify-center
+          w-12 h-12
+          bg-[#2f45ff] hover:bg-[#1e35e6]
+          text-white
+          rounded-full
+          shadow-lg hover:shadow-xl
+          transition-all duration-300
+          hover:scale-110
+          active:scale-95
+        "
+      >
+        <ChevronUp className="w-6 h-6" />
+      </button>
     </div>
   );
 }
